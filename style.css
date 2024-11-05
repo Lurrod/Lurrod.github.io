@@ -9,17 +9,33 @@
     --skill-css: #ff8a65;
     --skill-js: #ffd54f;
     --contact-bg: #fe908b;
+    --shadow-color1: #333;
+    --shadow-color2: #222;
+    --shadow-color3: #111;
+    --particle-color-1-dark: #ff4655;
+    --particle-color-2-dark: #ff7e75;
+    --particle-color-3-dark: #ffe4e6;
+    --particle-color-4-dark: #ffbaba;
+    --particle-color-5-dark: #ff4d4f;
 }
 .light-theme {
     --background-color: #f5f5f5;
     --text-color: #333333;
-    --accent-color: #28a745; /* Couleur verte en mode clair */
+    --accent-color: #28a745;
     --sidebar-bg: #e0e0e0;
     --card-bg: #ffffff;
-    --skill-html: #4CAF50; /* Vert pour HTML */
-    --skill-css: #66BB6A; /* Vert clair pour CSS */ 
-    --skill-js: #81C784;  /* Vert pour JavaScript */
+    --skill-html: #4CAF50;
+    --skill-css: #66BB6A;
+    --skill-js: #81C784;
     --contact-bg: #cae1d1;
+    --shadow-color1: #bbb;
+    --shadow-color2: #aaa;
+    --shadow-color3: #888;
+    --particle-color-1-light: #28a745;  /* Vert accentué */
+    --particle-color-2-light: #ff6f61;  /* Rouge corail */
+    --particle-color-3-light: #ffb3b3;  /* Rose pâle */
+    --particle-color-4-light: #ffcccb;  /* Pêche clair */
+    --particle-color-5-light: #ff7070; 
 }
 /* Styles globaux */
 * {
@@ -59,22 +75,27 @@ canvas {
     background-color: var(--sidebar-bg);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
+
 .sidebar ul {
     list-style: none;
 }
+
 .sidebar ul li {
     margin: 20px 0;
     text-align: center;
 }
+
 .sidebar ul li a {
     color: var(--text-color);
     font-size: 1.2em;
     transition: transform 0.3s ease, color 0.3s ease;
 }
+
 .sidebar ul li a:hover {
     color: var(--accent-color);
     cursor: pointer;
 }
+
 /* Bouton de changement de thème */
 .theme-toggle {
     position: fixed;
@@ -82,6 +103,7 @@ canvas {
     right: 20px;
     z-index: 10;
 }
+
 .theme-toggle button {
     background: var(--accent-color);
     color: var(--text-color);
@@ -91,21 +113,49 @@ canvas {
     cursor: pointer;
     transition: background 0.3s;
 }
+
 .theme-toggle button:hover {
     background: var(--text-color);
     color: var(--accent-color);
 }
+
 /* Sections principales */
 .main-content {
     margin-left: 80px;
     padding: 20px;
 }
-/* Agrandir et animer le texte "Bienvenue" */
+
 .accueil-heading {
-    font-size: 8em !important;
-    animation: zoomIn 1.5s ease-in-out forwards;
+    display: flex;
+    gap: 0.1em;
+    font-size: 10em !important;
     color: var(--accent-color);
-    text-transform: uppercase;
+}
+
+.letter {
+    display: inline-block;
+    text-shadow: 
+        6px 6px 0 var(--shadow-color1),
+        12px 12px 0 var(--shadow-color2),
+        18px 18px 0 var(--shadow-color3);
+    transform-origin: center;
+    transition: transform 0.5s ease;
+}
+
+.letter.animated {
+    animation: spin 10s infinite alternate ease-in-out;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg) translateX(0);
+    }
+    50% {
+        transform: rotate(360deg) translateX(10px);
+    }
+    100% {
+        transform: rotate(-360deg) translateX(-10px);
+    }
 }
 
 .header-h3{
@@ -113,25 +163,14 @@ canvas {
     animation: zoomIn 1.5s ease-in-out forwards;
 }
 
-/* Animation de zoom */
-@keyframes zoomIn {
-    0% {
-        transform: scale(0.5);
-        opacity: 0;
-    }
-    100% {
-        transform: scale(1);
-        opacity: 1;
-    }
-}
-
 .section {
-    height: 100vh;
+    min-height: 100vh; /* Utiliser min-height au lieu de height */
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 40px;
+    padding: 40px 20px; /* Ajout d'un padding horizontal pour un meilleur espacement */
+    margin-bottom: 20px; /* Ajout d'une marge inférieure pour séparer les sections */
 }
 
 .section h1, .section h2 {
@@ -163,8 +202,8 @@ canvas {
 /* Carte de projet agrandie */
 .project-card {
     position: relative;
-    width: 45%;
-    height: 400px;
+    width: 60%;
+    height: 700px;
     background-color: var(--card-bg);
     border-radius: 8px;
     padding: 20px;
@@ -193,7 +232,6 @@ canvas {
     transition: opacity 1s ease;
 }
 
-/* Montrer l'iframe au survol */
 .project-card:hover .content {
     opacity: 0;
 }
@@ -201,7 +239,6 @@ canvas {
 .project-card:hover .project-iframe {
     opacity: 1;
 }
-
 
 /* Compétences */
 .skills {
@@ -232,17 +269,20 @@ canvas {
     color: var(--text-color);
     text-align: center;
 }
+
 /* En-tête de la section contact */
 #contact h2 {
     font-size: 2em;
     color: var(--accent-color);
     margin-bottom: 10px;
 }
+
 #contact p {
     font-size: 1.1em;
     margin-bottom: 30px;
     color: var(--text-color);
 }
+
 /* Formulaire de Contact */
 .contact-form {
     max-width: 600px;
@@ -254,20 +294,24 @@ canvas {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s, box-shadow 0.3s;
 }
+
 .contact-form:hover {
     transform: translateY(-5px);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
+
 .contact-form label {
     font-size: 1em;
     color: var(--text-color);
     display: block;
     text-align: left;
 }
+
 .input-container {
     position: relative;
     width: 100%;
 }
+
 .fa-user-circle, .fa-at{
     position: absolute;
     left: 10px;
@@ -275,6 +319,7 @@ canvas {
     transform: translateY(-50%);
     color: var(--text-color);
 }
+
 .fa-paper-plane{    
     position: absolute;
     top: 27%;
@@ -282,6 +327,7 @@ canvas {
     transform: translateY(-50%);
     color: var(--text-color);
 }
+
 .contact-form input,
 .contact-form textarea {
     background-color: var(--contact-bg);
@@ -296,16 +342,19 @@ canvas {
     transition: border 0.3s, box-shadow 0.3s;
     margin-bottom: 15px;
 }
+
 .contact-form input:focus,
 .contact-form textarea:focus {
     border-color: var(--accent-color);
     box-shadow: 0px 0px 5px var(--text-color);
 }
+
 .contact-form input::placeholder,
 .contact-form textarea::placeholder {
     color: var(--text-color);
     opacity: 0.7;
 }
+
 /* Bouton Envoyer */
 .contact-form button {
     background-color: var(--accent-color);
@@ -319,6 +368,7 @@ canvas {
     width: 100%;
     max-width: 600px;
 }
+
 .contact-form button:hover {
     background-color: #ff607d; /* Slightly darker shade */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);

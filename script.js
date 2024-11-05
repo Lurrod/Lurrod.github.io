@@ -1,10 +1,18 @@
 const canvas = document.getElementById('animatedBackground');
 const ctx = canvas.getContext('2d');
+
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
-const particlesArray = [];
-const colors = ['#ff4655', '#ff7e75', '#ffe4e6', '#ffbaba', '#ff4d4f']; // Palette de couleurs
+let particlesArray = [];
+
+const colors = [
+    getComputedStyle(document.documentElement).getPropertyValue('--particle-color-1-dark').trim(),
+    getComputedStyle(document.documentElement).getPropertyValue('--particle-color-2-dark').trim(),
+    getComputedStyle(document.documentElement).getPropertyValue('--particle-color-3-dark').trim(),
+    getComputedStyle(document.documentElement).getPropertyValue('--particle-color-4-dark').trim(),
+    getComputedStyle(document.documentElement).getPropertyValue('--particle-color-5-dark').trim(),
+];
 
 class Particle {
     constructor(x, y, size, velocityX, velocityY) {
@@ -31,22 +39,13 @@ class Particle {
         this.x += this.velocityX;
         this.y += this.velocityY;
 
-        // Réduit la taille pour simuler une disparition progressive
-        if (this.size > 0.2) {
-            this.size -= 0.02;
-        } else {
-            // Si la particule est "disparue", on la réinitialise
-            this.reset();
+        // Vérification des bords du canvas pour ne pas sortir
+        if (this.x < 0 || this.x > canvas.width) {
+            this.velocityX = -this.velocityX; // Inverser la direction X
         }
-    }
-
-    reset() {
-        this.x = Math.random() * canvas.width;
-        this.y = Math.random() * canvas.height;
-        this.size = Math.random() * 5 + 2;
-        this.velocityX = (Math.random() - 0.5) * 1.5;
-        this.velocityY = (Math.random() - 0.5) * 1.5;
-        this.color = colors[Math.floor(Math.random() * colors.length)];
+        if (this.y < 0 || this.y > canvas.height) {
+            this.velocityY = -this.velocityY; // Inverser la direction Y
+        }
     }
 
     draw() {
@@ -99,7 +98,16 @@ window.addEventListener('resize', () => {
     init();
 });
 
+document.addEventListener("DOMContentLoaded", () => {
+    const letters = document.querySelectorAll(".letter");
 
+    letters.forEach(letter => {
+        // Ajoute un délai aléatoire à chaque lettre
+        setTimeout(() => {
+            letter.classList.add("animated");
+        }, Math.random() * 2000);
+    });
+});
 
 document.addEventListener("DOMContentLoaded", () => {
     // Fonction pour activer l'animation des barres de compétence
