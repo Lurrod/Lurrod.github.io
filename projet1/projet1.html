@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Location d'Appartements</title>
+    <link rel="stylesheet" href="projet1.css" />
+    <script src="projet1.js" defer></script>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="#about">À propos</a>
+            <a href="#offers">Nos Offres</a>
+            <a href="#contact">Contact</a>
+        </nav>
+        <div class="background">
+            <h1>Trouvez votre appartement idéal</h1>
+            <p>
+                Découvrez nos offres de location T1, T2 et T3 adaptées à vos besoins
+                et votre budget.
+            </p>
+        </div>
+    </header>
+
+    <section id="about">
+        <h2>Pourquoi nous choisir ?</h2>
+        <p>
+            Chez <strong>Location d'Appartements</strong>, nous comprenons que votre habitat est essentiel à votre bien-être. C'est pourquoi nous vous proposons des appartements modernes, soigneusement sélectionnés pour leur emplacement privilégié et leur confort optimal.
+        </p>
+        <p>
+            Que vous soyez étudiant à la recherche d'un espace pratique, un jeune actif désireux de trouver un coin tranquille pour se ressourcer, ou une petite famille en quête d'un lieu chaleureux, nous avons l'appartement idéal qui répondra à toutes vos attentes.
+        </p>
+        <p>
+            Nos logements sont entièrement équipés, prêts à vous accueillir, et notre équipe est là pour vous accompagner à chaque étape de votre recherche. Choisissez la tranquillité d'esprit et la qualité, choisissez <strong>Location d'Appartements</strong>.
+        </p>
+        <ul>
+            <li><strong>Appartements modernes :</strong> Équipés des dernières technologies et rénovés avec goût.</li>
+            <li><strong>Emplacements stratégiques :</strong> Proximité des transports, commerces et écoles.</li>
+            <li><strong>Support client dédié :</strong> Une équipe à votre écoute pour répondre à toutes vos questions.</li>
+        </ul>
+    </section>
+    
+
+    <section id="offers">
+        <h2>Nos Offres</h2>
+        
+        <div class="offer">
+            <div class="carousel">
+                <div class="carousel-images">
+                    <img src="images/t1-1.jpg" alt="T1 Studio" class="active">
+                    <img src="images/t1-2.jpg" alt="T1 Studio - Vue 2">
+                    <img src="images/t1-3.jpg" alt="T1 Studio - Vue 3">
+                    <img src="images/t1-4.jpg" alt="T1 Studio - Vue 4">
+                </div>
+                <button class="carousel-button prev" onclick="moveCarousel(-1)">&#10094;</button>
+                <button class="carousel-button next" onclick="moveCarousel(1)">&#10095;</button>
+            </div>
+            
+            <div class="offer-details">
+                <h3>T1 - Studio</h3>
+                <p>Le T1 est un appartement moderne et compact, idéal pour une personne ou un couple. Il offre un espace fonctionnel avec une pièce principale lumineuse, une cuisine ouverte et une salle de bain design.</p>
+                <p><strong>Superficie : </strong>25 m²</p>
+                <p><strong>Prix : </strong>500 €/mois</p>
+            </div>
+        </div>
+    
+        <div class="offer">
+            <div class="carousel">
+                <div class="carousel-images">
+                    <img src="images/t2-1.jpg" alt="T2 Deux pièces" class="active">
+                    <img src="images/t2-2.jpg" alt="T2 Deux pièces - Vue 2">
+                    <img src="images/t2-3.jpg" alt="T2 Deux pièces - Vue 3">
+                    <img src="images/t2-4.jpg" alt="T2 Deux pièces - Vue 4">
+                </div>
+                <button class="carousel-button prev" onclick="moveCarousel(-1)">&#10094;</button>
+                <button class="carousel-button next" onclick="moveCarousel(1)">&#10095;</button>
+            </div>
+            
+            <div class="offer-details">
+                <h3>T2 - 2 Pièces</h3>
+                <p>Le T2 vous offre un espace de vie confortable avec une chambre séparée, idéale pour ceux qui recherchent un peu plus d'intimité. L’appartement comprend une grande cuisine et un salon spacieux.</p>
+                <p><strong>Superficie : </strong>45 m²</p>
+                <p><strong>Prix : </strong>750 €/mois</p>
+            </div>
+        </div>
+    
+        <div class="offer">
+            <div class="carousel">
+                <div class="carousel-images">
+                    <img src="images/t3-1.jpg" alt="T3 Trois pièces" class="active">
+                    <img src="images/t3-2.jpg" alt="T3 Trois pièces - Vue 2">
+                    <img src="images/t3-3.jpg" alt="T3 Trois pièces - Vue 3">
+                    <img src="images/t3-4.jpg" alt="T3 Trois pièces - Vue 4">
+                    <img src="images/t3-5.jpg" alt="T3 Trois pièces - Vue 5">
+                    <img src="images/t3-6.jpg" alt="T3 Trois pièces - Vue 6">
+                </div>
+                <button class="carousel-button prev" onclick="moveCarousel(-1)">&#10094;</button>
+                <button class="carousel-button next" onclick="moveCarousel(1)">&#10095;</button>
+            </div>
+            
+            <div class="offer-details">
+                <h3>T3 - 3 Pièces</h3>
+                <p>Ce T3 est parfait pour une petite famille ou des colocataires. Il comprend deux chambres, un grand salon lumineux et une cuisine entièrement équipée, avec une salle de bain moderne.</p>
+                <p><strong>Superficie : </strong>70 m²</p>
+                <p><strong>Prix : </strong>1000 €/mois</p>
+            </div>
+        </div>
+    </section>
+    
+    <section id="contact">
+        <h2>Contactez-nous</h2>
+        <p>
+            Pour plus d'informations sur nos offres ou pour organiser une visite,
+            contactez-nous à l'adresse suivante :
+            <a href="mailto:info@appartement-location.com">info@appartement-location.com</a> ou remplissez le formulaire de contact ci-dessous.
+        </p>
+        
+        <h3>Formulaire de Contact</h3>
+        <form action="form-handler.php" method="post">
+            <label for="name">Votre nom :</label>
+            <input type="text" id="name" name="name" required>
+            <label for="email">Votre email :</label>
+            <input type="email" id="email" name="email" required>
+            <label for="tel"> Votre téléphone :</label>
+            <input type="tel" id="tel" name="tel" required>
+            <label for="message">Votre message :</label>
+            <textarea id="message" name="message" rows="4" required></textarea>
+            
+            <input type="submit" value="Envoyer">
+        </form>
+    
+        <h3>Informations supplémentaires :</h3>
+        <p>Notre équipe est à votre disposition pour répondre à toutes vos questions.</p>
+        <p><strong>Heures d'ouverture :</strong> Lundi - Vendredi : 9h - 18h</p>
+        <p><strong>Téléphone :</strong> <a href="tel:+33123456789">06 06 06 06 06</a></p>
+        <p><strong>Adresse :</strong> 123 Rue de j'existe pas, 75000 Paris, France</p>
+    </section>
+    
+    <footer>
+        <p>&copy; 2024 Location d'Appartements. Tous droits réservés.</p>
+    </footer>
+</body>
+</html>

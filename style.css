@@ -36,6 +36,14 @@ body {
     color: var(--text-color);
     overflow-x: hidden;
 }
+
+canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
 /* Sidebar */
 .sidebar {
     position: fixed;
@@ -94,11 +102,17 @@ body {
 }
 /* Agrandir et animer le texte "Bienvenue" */
 .accueil-heading {
-    font-size: 10em !important;
+    font-size: 8em !important;
     animation: zoomIn 1.5s ease-in-out forwards;
     color: var(--accent-color);
     text-transform: uppercase;
 }
+
+.header-h3{
+    font-size: 2em;
+    animation: zoomIn 1.5s ease-in-out forwards;
+}
+
 /* Animation de zoom */
 @keyframes zoomIn {
     0% {
@@ -119,12 +133,14 @@ body {
     align-items: center;
     padding: 40px;
 }
+
 .section h1, .section h2 {
     color: var(--accent-color);
     margin-bottom: 20px;
     font-size: 2.5em;
     text-align: center;
 }
+
 .section p {
     font-size: 1.2em;
     line-height: 1.6;
@@ -132,17 +148,21 @@ body {
     text-align: center;
     max-width: 800px;
 }
+
 /* Grille de projets */
 .projects-grid {
     display: flex;
-    flex-wrap: wrap;
     gap: 20px;
+    width: 100%;
+    height: 100%;
     justify-content: center;
     margin-top: 20px;
 }
+
 .project-card {
     position: relative;
-    width: 30;
+    width: 30%;
+    height: 50%;
     background-color: var(--card-bg);
     border-radius: 8px;
     padding: 20px;
@@ -150,9 +170,11 @@ body {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     overflow: hidden;
 }
+
 .project-card.hovered .content {
     opacity: 0;
 }
+
 /* Compétences */
 .skills {
     margin-top: 20px;
