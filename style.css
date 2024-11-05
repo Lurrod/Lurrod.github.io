@@ -1,0 +1,276 @@
+/* Variables de couleurs pour les thèmes */
+:root {
+    --background-color: #242424;
+    --text-color: #ffffff;
+    --accent-color: #ff4655;
+    --sidebar-bg: #181C14;
+    --card-bg: #333;
+    --skill-html: #ff4655;
+    --skill-css: #ff8a65;
+    --skill-js: #ffd54f;
+    --contact-bg: #fe908b;
+}
+.light-theme {
+    --background-color: #f5f5f5;
+    --text-color: #333333;
+    --accent-color: #28a745; /* Couleur verte en mode clair */
+    --sidebar-bg: #e0e0e0;
+    --card-bg: #ffffff;
+    --skill-html: #4CAF50; /* Vert pour HTML */
+    --skill-css: #66BB6A; /* Vert clair pour CSS */ 
+    --skill-js: #81C784;  /* Vert pour JavaScript */
+    --contact-bg: #cae1d1;
+}
+/* Styles globaux */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+html {
+    scroll-behavior: smooth;
+}
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    overflow-x: hidden;
+}
+/* Sidebar */
+.sidebar {
+    position: fixed;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    width: 40px;
+    padding: 10px;
+    border-radius: 0 50px 50px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--sidebar-bg);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+.sidebar ul {
+    list-style: none;
+}
+.sidebar ul li {
+    margin: 20px 0;
+    text-align: center;
+}
+.sidebar ul li a {
+    color: var(--text-color);
+    font-size: 1.2em;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+.sidebar ul li a:hover {
+    color: var(--accent-color);
+    cursor: pointer;
+}
+/* Bouton de changement de thème */
+.theme-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 10;
+}
+.theme-toggle button {
+    background: var(--accent-color);
+    color: var(--text-color);
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+.theme-toggle button:hover {
+    background: var(--text-color);
+    color: var(--accent-color);
+}
+/* Sections principales */
+.main-content {
+    margin-left: 80px;
+    padding: 20px;
+}
+/* Agrandir et animer le texte "Bienvenue" */
+.accueil-heading {
+    font-size: 10em !important;
+    animation: zoomIn 1.5s ease-in-out forwards;
+    color: var(--accent-color);
+    text-transform: uppercase;
+}
+/* Animation de zoom */
+@keyframes zoomIn {
+    0% {
+        transform: scale(0.5);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.section {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+}
+.section h1, .section h2 {
+    color: var(--accent-color);
+    margin-bottom: 20px;
+    font-size: 2.5em;
+    text-align: center;
+}
+.section p {
+    font-size: 1.2em;
+    line-height: 1.6;
+    color: var(--text-color);
+    text-align: center;
+    max-width: 800px;
+}
+/* Grille de projets */
+.projects-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 20px;
+}
+.project-card {
+    position: relative;
+    width: 30;
+    background-color: var(--card-bg);
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
+}
+.project-card.hovered .content {
+    opacity: 0;
+}
+/* Compétences */
+.skills {
+    margin-top: 20px;
+    width: 80%;
+    max-width: 600px;
+}
+.skill-bar {
+    background-color: var(--card-bg);
+    border-radius: 5px;
+    overflow: hidden;
+    height: 12px;
+    margin: 15px 0;
+    width: 100%;
+}
+.skill-level {
+    height: 12px;
+    border-radius: 5px;
+    width: 0;
+    transition: width 1.5s ease;
+}
+.skill-level.html.visible { width: 75%; background-color: var(--skill-html); }
+.skill-level.css.visible { width: 65%; background-color: var(--skill-css); }
+.skill-level.js.visible { width: 15%; background-color: var(--skill-js); }
+/* Section Contact */
+#contact {
+    padding: 40px;
+    color: var(--text-color);
+    text-align: center;
+}
+/* En-tête de la section contact */
+#contact h2 {
+    font-size: 2em;
+    color: var(--accent-color);
+    margin-bottom: 10px;
+}
+#contact p {
+    font-size: 1.1em;
+    margin-bottom: 30px;
+    color: var(--text-color);
+}
+/* Formulaire de Contact */
+.contact-form {
+    max-width: 600px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: var(--card-bg);
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+.contact-form:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+.contact-form label {
+    font-size: 1em;
+    color: var(--text-color);
+    display: block;
+    text-align: left;
+}
+.input-container {
+    position: relative;
+    width: 100%;
+}
+.fa-user-circle, .fa-at{
+    position: absolute;
+    left: 10px;
+    top: 37%;
+    transform: translateY(-50%);
+    color: var(--text-color);
+}
+.fa-paper-plane{    
+    position: absolute;
+    top: 27%;
+    left: 10px;
+    transform: translateY(-50%);
+    color: var(--text-color);
+}
+.contact-form input,
+.contact-form textarea {
+    background-color: var(--contact-bg);
+    color: var(--text-color);
+    border: 2px solid transparent;
+    border-radius: 5px;
+    padding: 10px 10px 10px 40px;
+    width: 100%;
+    max-width: 600px;
+    font-size: 1em;
+    outline: none;
+    transition: border 0.3s, box-shadow 0.3s;
+    margin-bottom: 15px;
+}
+.contact-form input:focus,
+.contact-form textarea:focus {
+    border-color: var(--accent-color);
+    box-shadow: 0px 0px 5px var(--text-color);
+}
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+    color: var(--text-color);
+    opacity: 0.7;
+}
+/* Bouton Envoyer */
+.contact-form button {
+    background-color: var(--accent-color);
+    color: #fff;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    width: 100%;
+    max-width: 600px;
+}
+.contact-form button:hover {
+    background-color: #ff607d; /* Slightly darker shade */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transform: scale(1.05);
+}
