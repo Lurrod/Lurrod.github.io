@@ -152,28 +152,56 @@ canvas {
 /* Grille de projets */
 .projects-grid {
     display: flex;
+    flex-wrap: wrap;
     gap: 20px;
     width: 100%;
-    height: 100%;
     justify-content: center;
     margin-top: 20px;
+    padding: 20px;
 }
 
+/* Carte de projet agrandie */
 .project-card {
     position: relative;
-    width: 30%;
-    height: 50%;
+    width: 45%;
+    height: 400px;
     background-color: var(--card-bg);
     border-radius: 8px;
     padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
     overflow: hidden;
 }
 
-.project-card.hovered .content {
+.project-card .content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 100%;
+}
+
+.project-iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    opacity: 0;
+    z-index: 0;
+    transition: opacity 1s ease;
+}
+
+/* Montrer l'iframe au survol */
+.project-card:hover .content {
     opacity: 0;
 }
+
+.project-card:hover .project-iframe {
+    opacity: 1;
+}
+
 
 /* Compétences */
 .skills {

@@ -141,22 +141,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
-document.querySelectorAll('.project-card').forEach(card => {
-    let timeout;
-    card.addEventListener('mouseenter', () => {
-        timeout = setTimeout(() => {
-            card.classList.add('hovered');
-            const imageUrl = card.getAttribute('data-image'); // Récupère l'URL de l'image
-            card.style.backgroundImage = `url('${imageUrl}')`;
-        }, 250);
-    });
-    card.addEventListener('mouseleave', () => {
-        clearTimeout(timeout);
-        card.classList.remove('hovered');
-        card.style.backgroundImage = ''; 
-    });
-});
-
 document.getElementById('toggleTheme').addEventListener('click', () => {
     document.body.classList.toggle('light-theme');
     const themeButton = document.getElementById('toggleTheme');
