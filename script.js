@@ -127,57 +127,6 @@ window.addEventListener('resize', () => {
     init();
 });
 
-document.addEventListener("DOMContentLoaded", () => {
-    const letters = document.querySelectorAll(".letter");
-
-    letters.forEach(letter => {
-        // Ajoute un délai aléatoire à chaque lettre
-        setTimeout(() => {
-            letter.classList.add("animated");
-        }, Math.random() * 2000);
-    });
-});
-
-document.addEventListener("DOMContentLoaded", () => {
-    // Fonction pour activer l'animation des barres de compétence
-    function activateSkillBars() {
-        const skillBars = document.querySelectorAll('.skill-level');
-        skillBars.forEach(skillBar => {
-            skillBar.classList.add('visible');
-        });
-    }
-    
-    // Fonction pour désactiver l'animation des barres de compétence
-    function deactivateSkillBars() {
-        const skillBars = document.querySelectorAll('.skill-level');
-        skillBars.forEach(skillBar => {
-            skillBar.classList.remove('visible');
-        });
-    }
-    // Configuration de l'observateur pour l'animation de la section compétences
-    const observer = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                // Ajouter un délai de 0.5 second pour démarrage de l'animation
-                setTimeout(() => activateSkillBars(), 500);
-            }
-        });
-    }, { threshold: 0.5 });
-    // Observer la section compétences
-    const competencesSection = document.getElementById('competences');
-    if (competencesSection) {
-        observer.observe(competencesSection);
-    }
-    
-    // Ajouter un écouteur d'événement au lien "Compétences"
-    const competencesLink = document.querySelector('a[href="#competences"]');
-    competencesLink.addEventListener('click', (event) => {
-        // Retirer les classes visibles pour réinitialiser l'animation
-        deactivateSkillBars();
-        setTimeout(() => activateSkillBars(), 1000);
-    });
-});
-
 document.getElementById('toggleTheme').addEventListener('click', () => {
     document.body.classList.toggle('light-theme');
     const themeButton = document.getElementById('toggleTheme');
