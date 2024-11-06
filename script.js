@@ -155,3 +155,14 @@ document.addEventListener("keydown", function(event) {
         }
     }
 });
+
+document.querySelector('.contact-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    
+    emailjs.sendForm('service_4a3pj9b', 'YOUR_TEMPLATE_ID', this)
+        .then(() => {
+            alert('Message envoyé avec succès !');
+        }, (error) => {
+            alert('Échec de l\'envoi du message...', error);
+        });
+});
