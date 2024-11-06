@@ -451,6 +451,39 @@ canvas {
     transform: scale(1.05);
 }
 
+/*Footer*/
+footer {
+    background-color: var(--sidebar-bg);
+    padding: 20px;
+    text-align: center;
+    border-top: 1px solid var(--shadow-color1);
+    color: var(--text-color);
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.footer-content p {
+    font-size: 0.9em;
+    color: var(--text-color);
+}
+
+.social-links a {
+    color: var(--text-color);
+    margin: 0 10px;
+    font-size: 1.5em;
+    transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+    color: var(--accent-color);
+}
+
+
 @media screen and (max-width: 990px) {
     .skill-container{
         grid-template-columns: repeat(2,1fr);
