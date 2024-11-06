@@ -14,15 +14,34 @@ const colors = [
     getComputedStyle(document.documentElement).getPropertyValue('--particle-color-5-dark').trim(),
 ];
 
+const colorsLight = [
+    getComputedStyle(document.documentElement).getPropertyValue('--particle-color-1-light').trim(),
+    getComputedStyle(document.documentElement).getPropertyValue('--particle-color-2-light').trim(),
+    getComputedStyle(document.documentElement).getPropertyValue('--particle-color-3-light').trim(),
+    getComputedStyle(document.documentElement).getPropertyValue('--particle-color-4-light').trim(),
+    getComputedStyle(document.documentElement).getPropertyValue('--particle-color-5-light').trim(),
+];
+
 class Particle {
     constructor(x, y, size, velocityX, velocityY) {
-        this.x = x;
-        this.y = y;
-        this.size = size;
-        this.color = colors[Math.floor(Math.random() * colors.length)];
-        this.velocityX = velocityX;
-        this.velocityY = velocityY;
-        this.alpha = 0.6; // Transparence de base
+        if (document.body.classList.contains('light-theme')) {
+            this.x = x;
+            this.y = y;
+            this.size = size;
+            this.color = colorsLight[Math.floor(Math.random() * colorsLight.length)];
+            this.velocityX = velocityX;
+            this.velocityY = velocityY;
+            this.alpha = 0.6;
+        } else {
+            this.x = x;
+            this.y = y;
+            this.size = size;
+            this.color = colors[Math.floor(Math.random() * colors.length)];
+            this.velocityX = velocityX;
+            this.velocityY = velocityY;
+            this.alpha = 0.6;
+        }
+
     }
 
     update(mouse) {
@@ -153,27 +172,25 @@ document.getElementById('toggleTheme').addEventListener('click', () => {
     document.body.classList.toggle('light-theme');
     const themeButton = document.getElementById('toggleTheme');
     if (document.body.classList.contains('light-theme')) {
-        themeButton.innerHTML = '<i class="fas fa-sun"></i>'; // Icône pour le mode clair
+        themeButton.innerHTML = '<i class="fas fa-sun"></i>';
     } else {
-        themeButton.innerHTML = '<i class="fas fa-moon"></i>'; // Icône pour le mode sombre
+        themeButton.innerHTML = '<i class="fas fa-moon"></i>';
     }
 });
 
 document.addEventListener("keydown", function(event) {
-    const sections = document.querySelectorAll(".section"); // Récupère toutes les sections
+    const sections = document.querySelectorAll(".section");
     let currentSectionIndex = Array.from(sections).findIndex(section =>
         section.getBoundingClientRect().top >= 0 && section.getBoundingClientRect().top < window.innerHeight
     );
 
     if (event.key === "ArrowDown") {
         event.preventDefault(); // Empêche le comportement par défaut de défilement
-        // Passe à la section suivante si elle existe
         if (currentSectionIndex < sections.length - 1) {
             sections[currentSectionIndex + 1].scrollIntoView({ behavior: "smooth" });
         }
     } else if (event.key === "ArrowUp") {
-        event.preventDefault(); // Empêche le comportement par défaut de défilement
-        // Retourne à la section précédente si elle existe
+        event.preventDefault();
         if (currentSectionIndex > 0) {
             sections[currentSectionIndex - 1].scrollIntoView({ behavior: "smooth" });
         }
