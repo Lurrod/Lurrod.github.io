@@ -5,115 +5,86 @@ canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
 let particlesArray = [];
+const maxConnections = 100;
 
 const colors = [
     getComputedStyle(document.documentElement).getPropertyValue('--particle-color-1-dark').trim(),
     getComputedStyle(document.documentElement).getPropertyValue('--particle-color-2-dark').trim(),
-    getComputedStyle(document.documentElement).getPropertyValue('--particle-color-3-dark').trim(),
-    getComputedStyle(document.documentElement).getPropertyValue('--particle-color-4-dark').trim(),
-    getComputedStyle(document.documentElement).getPropertyValue('--particle-color-5-dark').trim(),
 ];
 
 const colorsLight = [
     getComputedStyle(document.documentElement).getPropertyValue('--particle-color-1-light').trim(),
     getComputedStyle(document.documentElement).getPropertyValue('--particle-color-2-light').trim(),
-    getComputedStyle(document.documentElement).getPropertyValue('--particle-color-3-light').trim(),
-    getComputedStyle(document.documentElement).getPropertyValue('--particle-color-4-light').trim(),
-    getComputedStyle(document.documentElement).getPropertyValue('--particle-color-5-light').trim(),
 ];
 
 class Particle {
-    constructor(x, y, size, velocityX, velocityY) {
-        if (document.body.classList.contains('light-theme')) {
-            this.x = x;
-            this.y = y;
-            this.size = size;
-            this.originalSize = size;
-            this.color = colorsLight[Math.floor(Math.random() * colorsLight.length)];
-            this.velocityX = velocityX;
-            this.velocityY = velocityY;
-            this.alpha = 0.6;
-        } else {
-            this.x = x;
-            this.y = y;
-            this.size = size;
-            this.originalSize = size;
-            this.color = colors[Math.floor(Math.random() * colors.length)];
-            this.velocityX = velocityX;
-            this.velocityY = velocityY;
-            this.alpha = 0.6;
-        }
+    constructor(x, y) {
+        this.x = x;
+        this.y = y;
+        this.size = Math.random() * 2 + 0.5;
+        this.velocityX = (Math.random() - 0.5) * 0.5;
+        this.velocityY = (Math.random() - 0.5) * 0.5;
+        this.connections = 0;
+        this.color = document.body.classList.contains('light-theme') ? colorsLight[Math.floor(Math.random() * colorsLight.length)] : colors[Math.floor(Math.random() * colors.length)];
     }
 
-    update(mouse) {
-        const dx = this.x - mouse.x;
-        const dy = this.y - mouse.y;
-        const distance = Math.sqrt(dx * dx + dy * dy);
-
-        if (distance < 150) {
-            const forceDirectionX = dx / distance;
-            const forceDirectionY = dy / distance;
-            const maxDistance = 150;
-            const force = (maxDistance - distance) / maxDistance;
-            const directionX = forceDirectionX * force * 10;
-            const directionY = forceDirectionY * force * 10;
-
-            this.x += directionX;
-            this.y += directionY;
-            this.size = this.originalSize * 1.5;
-        } else {
-            this.size = this.originalSize;
-        }
-
+    update() {
         this.x += this.velocityX;
         this.y += this.velocityY;
 
-        if (this.x < 0 || this.x > canvas.width) {
-            this.velocityX = -this.velocityX;
-        }
-        if (this.y < 0 || this.y > canvas.height) {
-            this.velocityY = -this.velocityY;
-        }
+        if (this.x < 0 || this.x > canvas.width) this.velocityX = -this.velocityX;
+        if (this.y < 0 || this.y > canvas.height) this.velocityY = -this.velocityY;
     }
 
     draw() {
-        ctx.fillStyle = this.color;
-        ctx.globalAlpha = this.alpha;
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.closePath();
+        ctx.fillStyle = this.color;
         ctx.fill();
     }
 }
 
+function connectParticles() {
+    for (let i = 0; i < particlesArray.length; i++) {
+        for (let j = i + 1; j < particlesArray.length; j++) {
+            const dx = particlesArray[i].x - particlesArray[j].x;
+            const dy = particlesArray[i].y - particlesArray[j].y;
+            const distance = Math.sqrt(dx * dx + dy * dy);
 
-// Génère les particules initiales
-function init() {
-    for (let i = 0; i < 200; i++) {
-        const size = Math.random() * 5 + 2;
-        const x = Math.random() * canvas.width;
-        const y = Math.random() * canvas.height;
-        const velocityX = (Math.random() - 0.5) * 1.5;
-        const velocityY = (Math.random() - 0.5) * 1.5;
-        particlesArray.push(new Particle(x, y, size, velocityX, velocityY));
+            if (distance < 100 && particlesArray[i].connections < maxConnections) {
+                particlesArray[i].connections++;
+                particlesArray[j].connections++;
+
+                ctx.strokeStyle = particlesArray[i].color;
+                ctx.lineWidth = 0.2;
+                ctx.beginPath();
+                ctx.moveTo(particlesArray[i].x, particlesArray[i].y);
+                ctx.lineTo(particlesArray[j].x, particlesArray[j].y);
+                ctx.stroke();
+            }
+        }
+        particlesArray[i].connections = 0;
     }
 }
 
-// Variables pour détecter la position de la souris
-const mouse = { x: null, y: null };
-window.addEventListener('mousemove', (event) => {
-    mouse.x = event.x;
-    mouse.y = event.y;
-});
+function init() {
+    particlesArray = [];
+    for (let i = 0; i < 150; i++) {
+        const x = Math.random() * canvas.width;
+        const y = Math.random() * canvas.height;
+        particlesArray.push(new Particle(x, y));
+    }
+}
 
 function animate() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     particlesArray.forEach(particle => {
-        particle.update(mouse);
+        particle.update();
         particle.draw();
     });
 
+    connectParticles();
     requestAnimationFrame(animate);
 }
 
@@ -123,7 +94,6 @@ animate();
 window.addEventListener('resize', () => {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
-    particlesArray.length = 0;
     init();
 });
 
@@ -166,3 +136,4 @@ document.querySelector('.contact-form').addEventListener('submit', function (e) 
             alert('Échec de l\'envoi du message...', error);
         });
 });
+
