@@ -21,7 +21,7 @@ class Particle {
     constructor(x, y) {
         this.x = x;
         this.y = y;
-        this.size = Math.random() * 2 + 0.5;
+        this.size = Math.random() * 2 + 1.5;
         this.velocityX = (Math.random() - 0.5) * 0.5;
         this.velocityY = (Math.random() - 0.5) * 0.5;
         this.connections = 0;
@@ -56,7 +56,7 @@ function connectParticles() {
                 particlesArray[j].connections++;
 
                 ctx.strokeStyle = particlesArray[i].color;
-                ctx.lineWidth = 0.2;
+                ctx.lineWidth = 0.8;
                 ctx.beginPath();
                 ctx.moveTo(particlesArray[i].x, particlesArray[i].y);
                 ctx.lineTo(particlesArray[j].x, particlesArray[j].y);
@@ -137,3 +137,14 @@ document.querySelector('.contact-form').addEventListener('submit', function (e) 
         });
 });
 
+document.getElementById("toggle-certification").addEventListener("click", function() {
+    const certificationDiv = document.querySelector(".certification");
+    certificationDiv.classList.toggle("hidden");
+    
+    // Change le texte du bouton en fonction de l'état d'affichage
+    if (certificationDiv.classList.contains("hidden")) {
+        this.textContent = "Voir la Certification";
+    } else {
+        this.textContent = "Masquer la Certification";
+    }
+});

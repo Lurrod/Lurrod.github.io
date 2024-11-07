@@ -9,6 +9,7 @@
     --skill-css: #ff8a65;
     --skill-js: #ffd54f;
     --contact-bg: #fe908b;
+    --contact-hover: #ff607d;
     --shadow-color1: #ff7e75;
     --shadow-color2: #ffffff;
     --particle-color-1-dark: #ff4655;
@@ -28,6 +29,7 @@
     --skill-css: #66BB6A;
     --skill-js: #81C784;
     --contact-bg: #cae1d1;
+    --contact-hover: #56fc7c;
     --shadow-color1: #66BB6A;
     --shadow-color2: #96d699;
     --particle-color-1-light: #28a745; 
@@ -340,6 +342,37 @@ canvas {
     z-index: 2;
 }
 
+.hidden {
+    display: none;
+}
+
+#toggle-certification {
+    background-color: var(--accent-color);
+    color: var(--text-color);
+    border: none;
+    border-radius: 5px;
+    padding: 12px 24px;
+    margin-bottom: 20px;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+    margin-top: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+#toggle-certification:hover {
+    background-color: var(--text-color);
+    color: var(--accent-color);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+#toggle-certification:active {
+    transform: translateY(1px);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+}
+
+
 /* Section Contact */
 #contact {
     padding: 40px;
@@ -447,7 +480,7 @@ canvas {
 }
 
 .contact-form button:hover {
-    background-color: #ff607d; /* Slightly darker shade */
+    background-color: var(--contact-hover);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     transform: scale(1.05);
 }
