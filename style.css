@@ -227,6 +227,7 @@ canvas {
     opacity: 0;
     z-index: 0;
     transition: opacity 1s ease;
+    overflow: visible;
 }
 
 .project-card:hover .content {
