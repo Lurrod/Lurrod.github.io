@@ -141,7 +141,6 @@ document.getElementById("toggle-certification").addEventListener("click", functi
     const certificationDiv = document.querySelector(".certification");
     certificationDiv.classList.toggle("hidden");
     
-    // Change le texte du bouton en fonction de l'état d'affichage
     if (certificationDiv.classList.contains("hidden")) {
         this.textContent = "Voir la Certification";
     } else {

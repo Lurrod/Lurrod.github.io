@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Titouan Borde Portfolio</title>
+    <title id="title">Titouan Borde Portfolio</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Edu+AU+VIC+WA+NT+Guides:wght@400..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Itim&family=Sixtyfour+Convergence&display=swap" rel="stylesheet">
     <script src="script.js" defer></script>
+    <script src="translation.js" defer></script>
     <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
 </head>
 <body>
@@ -24,138 +25,132 @@
     
     <div class="main-content">
         <canvas id="animatedBackground"></canvas>
-        <div class="theme-toggle">
-            <button id="toggleTheme">
-                <i class="fas fa-moon"></i>
-            </button>
-        </div>
-        <section id="accueil" class="section">
-            <h1 class="accueil-heading">
-                <span class="letter">T</span>
-                <span class="letter">i</span>
-                <span class="letter">t</span>
-                <span class="letter">o</span>
-                <span class="letter">u</span>
-                <span class="letter">a</span>
-                <span class="letter">n</span>
-                <span>&nbsp;</span>
-                <span class="letter">B</span>
-                <span class="letter">o</span>
-                <span class="letter">r</span>
-                <span class="letter">d</span>
-                <span class="letter">e</span>
-            </h1>
-            <h3 class="header-h3">Développeur Web</h3>
-        </section>        
-        </div>
-        
-        <section id="projets" class="section">
-            <h2>Projets</h2>
-            <p>Découvrez mes projets récents, qu'il soit personnel ou a des fins d'apprentissage.</p>
-            <div class="projects-grid">
-                <div class="project-card" data-url="https://lurrod.github.io/projet1/projet1.html">
-                    <iframe class="project-iframe" src="https://lurrod.github.io/projet1/projet1.html" title="Projet 1"></iframe>
-                    <div class="content">
-                        <h3>Projet 1</h3>
-                        <p>Ce projet est un des 5 nécessaires pour valider ma certification FreeCodeCamp d'intégrateur web. C'est un site qui propose des ventes de 3 types d'appartements, il possède une page d'accueil un menu de navigation et une page de contact (toutes infos présentent sur ce site sont factices et inventer dans le cadre de l'exercice tout comme le formulaire de contact qui n'est pas fonctionnel)</p>
-                    </div>
-                </div>                
-                <div class="project-card" data-url="https://lurrod.github.io/projet2/projet2.html">
-                    <iframe class="project-iframe" src="https://lurrod.github.io/projet2/projet2.html" title="Projet 2"></iframe>
-                    <div class="content">
-                        <h3>Projet 2</h3>
-                        <p>Ce projet est un des 5 nécessaires pour valider ma certification FreeCodeCamp d'intégrateur web. C'est un site de documentation, il n'a pas de fonction particulière, mais dispose d'une barre de navigation sur la gauche qui permet de naviguer entre les grandes parties du site.</p>
-                    </div>
-                </div>
-                <div class="project-card" data-url="https://lurrod.github.io/projet3/projet3.html">
-                    <iframe class="project-iframe" src="https://lurrod.github.io/projet3/projet3.html" title="Projet 3"></iframe>
-                    <div class="content">
-                        <h3>Projet 3</h3>
-                        <p>Description</p>
-                    </div>
-                </div>
+            <div class="theme-toggle">
+                <button id="toggleTheme">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button id="toggleLanguage">
+                    <i class="fas fa-globe"></i>
+                </button>
             </div>            
-        </section>   
+        </div>
+
+    <!-- Section d'accueil -->
+    <section id="accueil" class="section">
+        <h1 class="accueil-heading" id="accueil-heading">Titouan Borde</h1>
+        <h3 class="header-h3" id="accueil-subheading">Développeur Web</h3>
+    </section>
         
-        <section id="competences" class="section">
-            <div class="skills">
-                <h2>Compétences</h2>
-                <div class="skill-container">
-                    <div class="skill-box">
-                        <div class="skill-title">
-                            <div class="skill-image">
-                                <img src="images/html.svg" class="skill-icon">
-                            </div>
-                            <h3>HTML 5</h3>
-                        </div>
-                        <p>a completer</p>
-                    </div>
-                    <div class="skill-box">
-                        <div class="skill-title">
-                            <div class="skill-image">
-                                <img src="images/css.svg" class="skill-icon">
-                            </div>
-                            <h3>CSS</h3>
-                        </div>
-                        <p>a completer</p>
-                    </div>
-                    <div class="skill-box">
-                        <div class="skill-title">
-                            <div class="skill-image">
-                                <img src="images/js.svg" class="skill-icon">
-                            </div>
-                            <h3>Javascript</h3>
-                        </div>
-                        <p>a completer</p>
-                    </div>
+    <!-- Section Projets -->
+    <section id="projets" class="section">
+        <h2 id="projets-heading">Projets</h2>
+        <p id="projets-description">Découvrez mes projets récents, qu'ils soient personnels ou à des fins d'apprentissage.</p>
+        <div class="projects-grid">
+            <div class="project-card" data-url="https://lurrod.github.io/projet1/projet1.html">
+                <iframe class="project-iframe" src="https://lurrod.github.io/projet1/projet1.html" title="Projet 1"></iframe>
+                <div class="content">
+                    <h3 id="projet1-title">Projet 1</h3>
+                    <p id="projet1-description">Ce projet est un des 5 nécessaires pour valider ma certification FreeCodeCamp d'intégrateur web. C'est un site qui propose des ventes de 3 types d'appartements, il possède une page d'accueil un menu de navigation et une page de contact (toutes infos présentent sur ce site sont factices et inventer dans le cadre de l'exercice tout comme le formulaire de contact qui n'est pas fonctionnel)</p>
                 </div>
             </div>
-            <button id="toggle-certification">Voir la Certification</button>
-            <div class="certification hidden">
-                <img class="certification-image" src="images/certification.png">
+            <div class="project-card" data-url="https://lurrod.github.io/projet2/projet2.html">
+                <iframe class="project-iframe" src="https://lurrod.github.io/projet2/projet2.html" title="Projet 2"></iframe>
+                <div class="content">
+                    <h3 id="projet2-title">Projet 2</h3>
+                    <p id="projet2-description">Ce projet est un des 5 nécessaires pour valider ma certification FreeCodeCamp d'intégrateur web. C'est un site de documentation, il n'a pas de fonction particulière, mais dispose d'une barre de navigation sur la gauche qui permet de naviguer entre les grandes parties du site.</p>
+                </div>
             </div>
-        </section>        
-        
-        <section id="contact" class="section">
-            <h2>Contact</h2>
-        <p>N'hésitez pas à me contacter pour discuter de nouvelles opportunités ou collaborations.</p>
+            <div class="project-card" data-url="https://lurrod.github.io/projet3/projet3.html">
+                <iframe class="project-iframe" src="https://lurrod.github.io/projet3/projet3.html" title="Projet 3"></iframe>
+                <div class="content">
+                    <h3 id="projet3-title">Projet 3</h3>
+                    <p id="projet3-description">Description</p>
+                </div>
+            </div>
+        </div>            
+    </section>   
+    
+    <!-- Section Compétences -->
+    <section id="competences" class="section">
+        <div class="skills">
+            <h2 id="competences-heading">Compétences</h2>
+            <div class="skill-container">
+                <div class="skill-box">
+                    <div class="skill-title">
+                        <div class="skill-image">
+                            <img src="images/html.svg" class="skill-icon">
+                        </div>
+                        <h3 id="html-skill">HTML 5</h3>
+                    </div>
+                    <p id="html-description">à compléter</p>
+                </div>
+                <div class="skill-box">
+                    <div class="skill-title">
+                        <div class="skill-image">
+                            <img src="images/css.svg" class="skill-icon">
+                        </div>
+                        <h3 id="css-skill">CSS</h3>
+                    </div>
+                    <p id="css-description">à compléter</p>
+                </div>
+                <div class="skill-box">
+                    <div class="skill-title">
+                        <div class="skill-image">
+                            <img src="images/js.svg" class="skill-icon">
+                        </div>
+                        <h3 id="js-skill">Javascript</h3>
+                    </div>
+                    <p id="js-description">à compléter</p>
+                </div>
+            </div>
+        </div>
+        <button id="toggle-certification">Voir la Certification</button>
+        <div class="certification hidden">
+            <img class="certification-image" src="images/certification.png">
+        </div>
+    </section>        
+
+    <!-- Section Contact -->
+    <section id="contact" class="section">
+        <h2 id="contact-heading">Contact</h2>
+        <p id="contact-description">N'hésitez pas à me contacter pour discuter de nouvelles opportunités ou collaborations.</p>
         <form class="contact-form" method="POST">
-            <label for="nom">Nom</label>
+            <label for="nom" id="label-nom">Nom</label>
             <div class="input-container">
                 <i class="fas fa-user-circle"></i>
                 <input type="text" name="nom" id="nom" placeholder="Votre Nom" required>
             </div>
-        
-            <label for="email">Email</label>
+
+            <label for="email" id="label-email">Email</label>
             <div class="input-container">
                 <i class="fas fa-at"></i>
                 <input type="email" name="email" id="email" placeholder="Votre Email" required>
             </div>
-        
-            <label for="message">Message</label>
+
+            <label for="message" id="label-message">Message</label>
             <div class="input-container">
                 <i class="fas fa-paper-plane"></i>
                 <textarea name="message" id="message" placeholder="Votre Message" required></textarea>
-            </div>        
-            <button type="submit">Envoyer</button>
+            </div>
+            <button type="submit" id="submit-button">Envoyer</button>
         </form>     
         <script>
             (function(){
                 emailjs.init("9QItNZ3bWwbMtdqwc");
             })();
         </script>          
-        </section>
-        <footer>
-            <div class="footer-content">
-                <div class="social-links">
-                    <a href="https://github.com/lurrod" target="_blank"><i class="fab fa-github"></i></a>
-                    <a href="https://linkedin.com/in/yourprofile" target="_blank"><i class="fab fa-linkedin"></i></a>
-                    <a href="https://twitter.com/lurrod1" target="_blank"><i class="fa-brands fa-twitter"></i></a>
-                </div>
-                <small>&copy; 2024 Lurrod. Tous droits réservés.</small>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="social-links">
+                <a href="https://github.com/lurrod" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="https://linkedin.com/in/yourprofile" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="https://twitter.com/lurrod1" target="_blank"><i class="fa-brands fa-twitter"></i></a>
             </div>
-        </footer>
-          
-    </div>
+            <small id="footer-text">&copy; 2024 Titouan Borde. Tous droits réservés.</small>
+        </div>
+    </footer>
 </body>
 </html>
