@@ -150,13 +150,13 @@ canvas {
 }
 
 .section {
-    min-height: 100vh; /* Utiliser min-height au lieu de height */
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 40px 20px; /* Ajout d'un padding horizontal pour un meilleur espacement */
-    margin-bottom: 20px; /* Ajout d'une marge inférieure pour séparer les sections */
+    padding: 40px 20px;
+    margin-bottom: 20px;
 }
 
 .section h1, .section h2 {
