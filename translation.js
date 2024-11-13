@@ -1,4 +1,3 @@
-// Dictionnaire de traductions
 const translations = {
     fr: {
         title: "Titouan Borde Portfolio",
@@ -25,7 +24,7 @@ const translations = {
         label_email: "Email",
         label_message: "Message",
         submit_button: "Envoyer",
-        footer_text: "Tous droits réservés."
+        footer_text: "\u00A9 2024 Titouan Borde.Tous droits réservés."
     },
     en: {
         title: "Titouan Borde Portfolio",
@@ -34,24 +33,45 @@ const translations = {
         projets_heading: "Projects",
         projets_description: "Discover my recent projects, whether personal or for learning purposes.",
         projet1_title: "Project 1",
-        projet1_description: "This project is one of the five required for my FreeCodeCamp web integrator certification. It’s a site offering sales of three types of apartments",
+        projet1_description: "This project is one of the five required for my FreeCodeCamp web integrator certification. It’s a site offering sales of three types of apartments, it has a home page, a navigation menu and a contact page (all information presented on this site is artificial and invented as part of the exercise just like the contact form which is not functional)",
         projet2_title: "Project 2",
-        projet2_description: "This project is one of the five required for my FreeCodeCamp web integrator certification. It's a documentation site",
+        projet2_description: "This project is one of the five required for my FreeCodeCamp web integrator certification. It's a documentation site, it has no particular function, but has a navigation bar on the left which allows you to navigate between the main parts of the site",
         projet3_title: "Project 3",
         projet3_description: "Description",
         competences_heading: "Skills",
         html_skill: "HTML 5",
-        html_description: "to be completed",
+        html_description: "",
         css_skill: "CSS",
-        css_description: "to be completed",
+        css_description: "",
         js_skill: "Javascript",
-        js_description: "to be completed",
+        js_description: "",
         contact_heading: "Contact",
         contact_description: "Feel free to reach out to discuss new opportunities or collaborations.",
         label_nom: "Name",
         label_email: "Email",
         label_message: "Message",
         submit_button: "Send",
-        footer_text: "All rights reserved."
+        footer_text: "\u00A9 2024 Titouan Borde. All rights reserved."
     }
 };
+
+document.addEventListener('DOMContentLoaded', () => {
+    const initialLanguage = document.documentElement.lang || 'fr';
+    translatePage(initialLanguage);
+});
+
+function translatePage(language) {
+    if (!translations[language]) {
+        console.error(`No translations available for language: ${language}`);
+        return;
+    }
+
+    Object.keys(translations[language]).forEach(id => {
+        const element = document.getElementById(id);
+        if (element) {
+            element.textContent = translations[language][id];
+        } else {
+            console.warn(`No element found with id: ${id}`);
+        }
+    });
+}

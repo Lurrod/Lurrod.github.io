@@ -107,6 +107,12 @@ document.getElementById('toggleTheme').addEventListener('click', () => {
     }
 });
 
+document.getElementById('toggleLanguage').addEventListener('click', () => {
+    const currentLanguage = document.documentElement.lang === "fr" ? "en" : "fr";
+    document.documentElement.lang = currentLanguage;
+    translatePage(currentLanguage);
+});
+
 document.addEventListener("keydown", function(event) {
     const sections = document.querySelectorAll(".section");
     let currentSectionIndex = Array.from(sections).findIndex(section =>
