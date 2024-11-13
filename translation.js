@@ -55,26 +55,3 @@ const translations = {
         footer_text: "All rights reserved."
     }
 };
-
-
-let currentLanguage = 'fr';
-
-function applyTranslations() {
-    const elements = document.querySelectorAll("[id]");
-
-    elements.forEach((element) => {
-        const translationKey = element.id;
-        if (translations[currentLanguage][translationKey]) {
-            element.innerText = translations[currentLanguage][translationKey];
-        }
-    });
-}
-
-
-document.getElementById("toggleLanguage").addEventListener("click", () => {
-    currentLanguage = currentLanguage === 'fr' ? 'en' : 'fr';
-    applyTranslations();
-});
-
-
-applyTranslations();
