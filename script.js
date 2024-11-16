@@ -111,7 +111,13 @@ document.getElementById('toggleLanguage').addEventListener('click', () => {
     const currentLanguage = document.documentElement.lang === "fr" ? "en" : "fr";
     document.documentElement.lang = currentLanguage;
     translatePage(currentLanguage);
+
+    // Change the flag image based on the selected language
+    const flagImage = document.getElementById('languageFlag');
+    flagImage.src = currentLanguage === "fr" ? "images/france.png" : "images/anglais.png";
+    flagImage.alt = currentLanguage === "fr" ? "Drapeau français" : "Drapeau anglais";
 });
+
 
 document.addEventListener("keydown", function(event) {
     const sections = document.querySelectorAll(".section");
@@ -141,15 +147,4 @@ document.querySelector('.contact-form').addEventListener('submit', function (e) 
         }, (error) => {
             alert('Échec de l\'envoi du message...', error);
         });
-});
-
-document.getElementById("toggle-certification").addEventListener("click", function() {
-    const certificationDiv = document.querySelector(".certification");
-    certificationDiv.classList.toggle("hidden");
-    
-    if (certificationDiv.classList.contains("hidden")) {
-        this.textContent = "Voir la Certification";
-    } else {
-        this.textContent = "Masquer la Certification";
-    }
 });

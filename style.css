@@ -307,7 +307,7 @@ canvas {
     cursor: pointer;
 }
 
-.skill-box:hover > .skill-title:after, .skill-box:hover > .skill-title:before{
+.skill-box:hover  .skill-title:after, .skill-box:hover  .skill-title:before{
     width: 35px;
 }
 
@@ -381,36 +381,120 @@ canvas {
     z-index: 2;
 }
 
+/* Conteneur principal des barres */
+.progress-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* Titre général des barres */
+.progress-heading {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+/* Conteneur pour chaque projet */
+.progress-project {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Aligner les textes à gauche */
+    margin-left: 10px;
+}
+
+/* Nom du projet */
+.project-name {
+    font-size: 1em;
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-align: left;
+}
+
+/* Barre de progression (inchangée) */
+.progress-bar {
+    position: relative;
+    width: 100%;
+    height: 25px;
+    margin-bottom: 10px;
+    background-color: #e0e0e0;
+    border-radius: 12.5px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 10px;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.progress-bar::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: var(--progress);
+    background: linear-gradient(to right, var(--skill-html, #ff4655), var(--skill-css, #ff8a65), var(--skill-js, #ffd54f));
+    border-radius: 12.5px 0 0 12.5px;
+    z-index: 0;
+}
+
+.skill-name {
+    font-size: 0.9em;
+    color: #333;
+    z-index: 1;
+}
+
+.progress-percentage {
+    font-size: 0.9em;
+    font-weight: bold;
+    color: #333;
+    z-index: 1;
+}
+
 .hidden {
     display: none;
 }
 
-#toggle-certification {
+.certification {
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* espace entre les boutons */
+    margin-top: 40px;
+}
+
+.skills-button {
     background-color: var(--accent-color);
     color: var(--text-color);
     border: none;
-    border-radius: 5px;
-    padding: 12px 24px;
-    margin-bottom: 20px;
-    font-size: 1.2em;
+    border-radius: 25px;
+    padding: 12px 25px;
+    font-size: 1em;
+    font-weight: bold;
     cursor: pointer;
     transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
-    margin-top: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
 }
 
-#toggle-certification:hover {
+.skills-button i {
+    font-size: 1.2em;
+}
+
+.skills-button:hover {
     background-color: var(--text-color);
     color: var(--accent-color);
-    transform: translateY(-3px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
 }
 
-#toggle-certification:active {
-    transform: translateY(1px);
+.skills-button:active {
+    transform: translateY(2px);
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
 }
-
 
 /* Section Contact */
 #contact {
