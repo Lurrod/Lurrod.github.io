@@ -253,8 +253,8 @@ canvas {
 /* Conteneur principal des barres */
 .progress-container {
     text-align: center;
-    margin-top: 20px;
-    width: 50%;
+    margin-top: 100px;
+    width: 80%;
 }
 
 /* Titre général des barres */
