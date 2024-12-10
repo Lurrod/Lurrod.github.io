@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title id="title">Titouan Borde Portfolio</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Edu+AU+VIC+WA+NT+Guides:wght@400..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Itim&family=Sixtyfour+Convergence&display=swap" rel="stylesheet">
@@ -46,7 +46,14 @@
         <p id="projets_description">Découvrez mes projets récents, qu'ils soient personnels ou à des fins d'apprentissage.</p>
         <div class="projects-grid">
             <div class="project-card" data-url="https://lurrod.github.io/projet1/projet1.html">
-                <button class="visit-button" onclick="window.open('https://lurrod.github.io/projet1/projet1.html', '_blank')">Visiter le site</button>
+                <div class="icon-container">
+                    <div class="github-icon" onclick="window.open('https://github.com/Lurrod/freecodecamp/tree/main/responsive-web-design/projet4', '_blank')">
+                        <i class="fa-brands fa-github"></i>
+                    </div>
+                    <div class="visit-icon" onclick="window.open('https://lurrod.github.io/projet1/projet1.html', '_blank')">
+                        <i class="fa-solid fa-link"></i>
+                    </div>
+                </div>
                 <iframe class="project-iframe" src="https://lurrod.github.io/projet1/projet1.html" title="Projet 1"></iframe>
                 <div class="content">
                     <h3 id="projet1_title">Projet 1</h3>
@@ -54,7 +61,14 @@
                 </div>
             </div>
             <div class="project-card" data-url="https://lurrod.github.io/projet2/projet2.html">
-                <button class="visit-button" onclick="window.open('https://lurrod.github.io/projet2/projet2.html', '_blank')">Visiter le site</button>
+                <div class="icon-container">
+                    <div class="github-icon" onclick="window.open('https://github.com/Lurrod/freecodecamp/tree/main/responsive-web-design/projet3', '_blank')">
+                        <i class="fa-brands fa-github"></i>
+                    </div>
+                    <div class="visit-icon" onclick="window.open('https://lurrod.github.io/projet2/projet2.html', '_blank')">
+                        <i class="fa-solid fa-link"></i>
+                    </div>
+                </div>
                 <iframe class="project-iframe" src="https://lurrod.github.io/projet2/projet2.html" title="Projet 2"></iframe>
                 <div class="content">
                     <h3 id="projet2_title">Projet 2</h3>
@@ -136,7 +150,7 @@
             </div>
             <div class="certification">
                 <a class="skills-button" href="/images/certification.png" download="Certification"><i class="fas fa-download"></i> Télécharger ma certification FreeCodeCamp</a>
-                <a class="skills-button" href="/images/cv.pdf" download="titouan_borde_cv"><i class="fas fa-download"></i> Télécharger mon CV</a>
+                <a class="skills-button" href="/images/cv.pdf" download="BORDE_Titouan_CV"><i class="fas fa-download"></i> Télécharger mon CV</a>
             </div>                        
         </div>
     </section>        
