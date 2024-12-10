@@ -112,7 +112,6 @@ document.getElementById('toggleLanguage').addEventListener('click', () => {
     document.documentElement.lang = currentLanguage;
     translatePage(currentLanguage);
 
-    // Change the flag image based on the selected language
     const flagImage = document.getElementById('languageFlag');
     flagImage.src = currentLanguage === "fr" ? "images/france.png" : "images/anglais.png";
     flagImage.alt = currentLanguage === "fr" ? "Drapeau français" : "Drapeau anglais";
@@ -126,7 +125,7 @@ document.addEventListener("keydown", function(event) {
     );
 
     if (event.key === "ArrowDown") {
-        event.preventDefault(); // Empêche le comportement par défaut de défilement
+        event.preventDefault();
         if (currentSectionIndex < sections.length - 1) {
             sections[currentSectionIndex + 1].scrollIntoView({ behavior: "smooth" });
         }
