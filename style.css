@@ -322,14 +322,10 @@ canvas {
 
 /* Conteneur pour les icônes */
 .icon-container {
-    position: absolute;
-    top: 10px;
-    width: 100%;
     display: flex;
     justify-content: space-between;
     pointer-events: auto;
     z-index: 2;
-    padding-right: 3%; 
 }
 
 .github-icon {
@@ -349,22 +345,6 @@ canvas {
 .github-icon:hover,
 .visit-icon:hover {
     color: var(--accent-color);
-}
-
-.project-card:nth-child(odd) .github-icon {
-    order: 1; /* GitHub à gauche */
-}
-
-.project-card:nth-child(odd) .visit-icon {
-    order: 2; /* Lien à droite */
-}
-
-.project-card:nth-child(even) .github-icon {
-    order: 2; /* GitHub à droite */
-}
-
-.project-card:nth-child(even) .visit-icon {
-    order: 1; /* Lien à gauche */
 }
 
 /* Compétences */
