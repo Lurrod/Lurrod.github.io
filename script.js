@@ -8,11 +8,18 @@ document.getElementById('toggleTheme').addEventListener('click', () => {
     }
 });
 
-document.getElementById('toggleLanguage').addEventListener('click', () => {
-    const currentLanguage = document.documentElement.lang === "fr" ? "en" : "fr";
-    const flagImage = document.getElementById('languageFlag');
-    flagImage.src = currentLanguage === "fr" ? "images/france.png" : "images/anglais.png";
-    flagImage.alt = currentLanguage === "fr" ? "Drapeau français" : "Drapeau anglais";
+document.addEventListener('DOMContentLoaded', () => {
+    const toggleLanguageButton = document.getElementById('toggleLanguage');
+    const languageFlag = document.getElementById('languageFlag');
+    let isFrench = true;
+    toggleLanguageButton.addEventListener('click', () => {
+        if (isFrench) {
+            languageFlag.src = 'images/anglais.png';
+        } else {
+            languageFlag.src = 'images/france.png';
+        }
+        isFrench = !isFrench;
+    });
 });
 
 function typewriterEffect(element, text, delay = 100) {
@@ -27,20 +34,8 @@ function typewriterEffect(element, text, delay = 100) {
     type();
 }
 
-function typewriterEffect(element, text, delay = 100) {
-    let i = 0;
-    function type() {
-        if (i < text.length) {
-            element.textContent += text.charAt(i);
-            i++;
-            setTimeout(type, delay);
-        }
-    }
-    type();
-}
-
 const accueilHeading = document.querySelector('.accueil-heading');
-accueilHeading.textContent = ''; // Clear existing text
+accueilHeading.textContent = '';
 typewriterEffect(accueilHeading, "TITOUAN BORDE");
 
 
@@ -61,6 +56,21 @@ document.addEventListener("keydown", function(event) {
             sections[currentSectionIndex - 1].scrollIntoView({ behavior: "smooth" });
         }
     }
+});
+
+document.querySelectorAll('.project-card').forEach(card => {
+    card.addEventListener('click', (e) => {
+        // Évitez que les clics sur les icônes déclenchent l'événement sur la carte
+        if (e.target.closest('.icon-container')) return;
+
+        card.classList.toggle('minimized');
+        card.classList.toggle('expanded');
+
+        // Change l'orientation de l'icône de flèche
+        const icon = card.querySelector('.expand-icon');
+        icon.classList.toggle('fa-chevron-down');
+        icon.classList.toggle('fa-chevron-up');
+    });
 });
 
 document.querySelector('.contact-form').addEventListener('submit', function (e) {

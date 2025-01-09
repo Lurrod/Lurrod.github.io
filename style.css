@@ -175,183 +175,148 @@ canvas {
     max-width: 800px;
 }
 
-/* Grille de projets */
+/* Grille des projets */
 .projects-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Limite à 3 projets par ligne */
+    gap: 30px;
     width: 100%;
-    justify-content: center;
-    margin-top: 20px;
+    max-width: 1200px; /* Limite la largeur maximale */
+    margin: 20px auto;
     padding: 20px;
-    font-size: 1.2em;
 }
 
+/* Cartes de projet minimisées */
 .project-card {
-    position: relative;
-    width: 60%;
-    height: 700px;
     background-color: var(--card-bg);
     border-radius: 8px;
-    padding: 20px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-    overflow: hidden;
-    border: 3px solid var(--accent-color);
-}
-
-.project-iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: calc(100% - 30px);
-    border: none;
-    opacity: 0;
-    z-index: 99;
-    transition: opacity 0.5s ease;
-    margin-top: 60px;
-}
-
-.project-card .content {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    cursor: pointer;
     display: flex;
     flex-direction: column;
+    align-items: center;
     justify-content: center;
-    align-items: center;
     text-align: center;
-    height: 100%;
-    font-size: 1.2em;
-}
-
-.content {
     position: relative;
-    z-index: 1; /* Assurez-vous que cette couche est sous .visit-icon */
-    pointer-events: none; /* Désactive les interactions sur .content */
+    min-height: 200px;
 }
 
-.project-card .external-label {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 30px;
-    background-color: var(--accent-color);
-    color: var(--text-color);
-    font-size: 1em;
-    text-align: center;
-    line-height: 30px;
-    z-index: 1;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
+.project-card.minimized {
+    width: 100%; /* Utilise toute la largeur de sa cellule */
+    height: 200px;
+    padding: 15px;
 }
 
-.content h3{
-    padding-bottom: 50px;
+.project-card.expanded {
+    position: fixed; /* Position fixe pour couvrir l'écran */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90vw; /* 90% de la largeur de la fenêtre */
+    height: 90vh; /* 90% de la hauteur de la fenêtre */
+    max-width: 1200px;
+    z-index: 1000; /* Au-dessus des autres éléments */
+    padding: 30px;
+    overflow-y: auto; /* Permet le défilement si nécessaire */
 }
 
-.project-card:hover .content {
-    opacity: 0;
-}
-
-.project-card:hover .project-iframe {
-    opacity: 1;
-}
-
-/* Conteneur principal des barres */
-.progress-container {
-    text-align: center;
-    margin-top: 100px;
-    width: 80%;
-}
-
-/* Titre général des barres */
-.progress-heading {
-    font-size: 1.2em;
-    font-weight: bold;
-    margin-bottom: 15px;
-}
-
-/* Conteneur pour chaque projet */
-.progress-project {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    margin-left: 10px;
-}
-
-/* Nom du projet */
-.project-name {
-    font-size: 1em;
-    font-weight: bold;
-    margin-bottom: 10px;
-    text-align: left;
-}
-
-/* Barre de progression (inchangée) */
-.progress-bar {
-    position: relative;
-    width: 100%;
-    height: 25px;
-    margin-bottom: 10px;
-    background-color: #e0e0e0;
-    border-radius: 12.5px;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 10px;
-    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.progress-bar::before {
+/* Fond semi-transparent quand un projet est développé */
+.project-card.expanded::before {
     content: '';
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
-    height: 100%;
-    width: var(--progress);
-    background: linear-gradient(to right, var(--skill-html, #ff4655), var(--skill-css, #ff8a65), var(--skill-js, #ffd54f));
-    border-radius: 12.5px 0 0 12.5px;
-    z-index: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: -1;
 }
 
-.skill-name {
-    font-size: 0.9em;
-    color: #333;
-    z-index: 1;
+/* Titres des projets */
+.project-card h3 {
+    font-size: 1.2em;
+    color: var(--text-color);
+    margin: 10px 0;
 }
 
-.progress-percentage {
-    font-size: 0.9em;
-    font-weight: bold;
-    color: #333;
-    z-index: 1;
+/* Icône pour développer/réduire */
+.expand-icon {
+    font-size: 1.5em;
+    color: var(--text-color);
+    transition: transform 0.3s ease;
+    margin-top: 10px;
 }
 
-/* Conteneur pour les icônes */
+.project-card.expanded .expand-icon {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 1.8em;
+    cursor: pointer;
+}
+
+/* Media queries pour la responsivité */
+@media screen and (max-width: 1024px) {
+    .projects-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .project-card.expanded {
+        width: 95vw;
+        height: 95vh;
+    }
+}
+
+/* Liens GitHub et Visite */
 .icon-container {
     display: flex;
     justify-content: space-between;
-    pointer-events: auto;
-    z-index: 2;
+    width: 100%;
+    margin-top: 10px;
+    display: none; /* Masqué par défaut dans l'état minimisé */
 }
 
-.github-icon {
+.icon-container .github-icon,
+.icon-container .visit-icon {
     cursor: pointer;
-    font-size: 1.5em;
+    font-size: 1.2em;
     color: var(--text-color);
-    transition: transform 0.3s, color 0.3s;
+    transition: color 0.3s ease;
 }
 
-.visit-icon {
-    cursor: pointer;
-    font-size: 1.5em;
-    color: var(--text-color);
-    transition: transform 0.3s, color 0.3s;
-}
-
-.github-icon:hover,
-.visit-icon:hover {
+.icon-container .github-icon:hover,
+.icon-container .visit-icon:hover {
     color: var(--accent-color);
+}
+
+/* Iframe (contenu du projet) */
+.project-iframe {
+    width: 100%;
+    height: 300px;
+    margin-top: 20px;
+    border: none;
+    display: none; /* Masqué par défaut dans l'état minimisé */
+}
+
+/* Afficher les éléments développés */
+.project-card.expanded .icon-container {
+    display: flex;
+}
+
+.project-card.expanded .project-iframe {
+    display: block;
+}
+
+/* Transition douce lors de l'extension */
+.project-card {
+    transition: all 0.3s ease-in-out;
 }
 
 /* Compétences */
