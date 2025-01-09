@@ -1,13 +1,3 @@
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-
-
-window.addEventListener('resize', () => {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-    init();
-});
-
 document.getElementById('toggleTheme').addEventListener('click', () => {
     document.body.classList.toggle('light-theme');
     const themeButton = document.getElementById('toggleTheme');
@@ -20,13 +10,38 @@ document.getElementById('toggleTheme').addEventListener('click', () => {
 
 document.getElementById('toggleLanguage').addEventListener('click', () => {
     const currentLanguage = document.documentElement.lang === "fr" ? "en" : "fr";
-    document.documentElement.lang = currentLanguage;
-    translatePage(currentLanguage);
-
     const flagImage = document.getElementById('languageFlag');
     flagImage.src = currentLanguage === "fr" ? "images/france.png" : "images/anglais.png";
     flagImage.alt = currentLanguage === "fr" ? "Drapeau français" : "Drapeau anglais";
 });
+
+function typewriterEffect(element, text, delay = 100) {
+    let i = 0;
+    function type() {
+        if (i < text.length) {
+            element.textContent += text.charAt(i);
+            i++;
+            setTimeout(type, delay);
+        }
+    }
+    type();
+}
+
+function typewriterEffect(element, text, delay = 100) {
+    let i = 0;
+    function type() {
+        if (i < text.length) {
+            element.textContent += text.charAt(i);
+            i++;
+            setTimeout(type, delay);
+        }
+    }
+    type();
+}
+
+const accueilHeading = document.querySelector('.accueil-heading');
+accueilHeading.textContent = ''; // Clear existing text
+typewriterEffect(accueilHeading, "TITOUAN BORDE");
 
 
 document.addEventListener("keydown", function(event) {

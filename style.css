@@ -108,22 +108,30 @@ canvas {
     top: 20px;
     right: 20px;
     z-index: 10;
+    display: flex;
+    align-items: center; 
+    gap: 10px;
 }
 
 .theme-toggle button {
-    background: var(--accent-color);
-    color: var(--text-color);
-    border: none;
-    border-radius: 5px;
-    padding: 10px;
-    cursor: pointer;
-    transition: background 0.3s;
-    margin-left: 10px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+    transition: transform 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--background-color);
+    border: 2px solid var(--text-color);
 }
 
-.theme-toggle button:hover {
-    background: var(--text-color);
-    color: var(--accent-color);
+.flag {
+    width: 100%;     
+}
+
+.fas{
+    color: var(--text-color);
 }
 
 /* Sections principales */
@@ -140,7 +148,6 @@ canvas {
 
 .header-h3{
     font-size: 2em;
-    animation: zoomIn 1.5s ease-in-out forwards;
 }
 
 .section {
@@ -455,6 +462,7 @@ canvas {
 
 .certification {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     gap: 20px; /* espace entre les boutons */
     margin-top: 40px;
