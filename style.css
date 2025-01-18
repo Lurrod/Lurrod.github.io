@@ -79,11 +79,16 @@ canvas {
     flex-direction: column;
     align-items: center;
     background-color: var(--sidebar-bg);
-    box-shadow: 0px -10px  15px 5px var(--shadow), 0px 10px 15px 5px var(--shadow), 10px 0px 15px 5px var(--shadow)
+    box-shadow: 0px -10px 15px 5px var(--shadow), 
+                0px 10px 15px 5px var(--shadow), 
+                10px 0px 15px 5px var(--shadow);
+    transition: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    transform-origin: left center;
 }
 
 .sidebar ul {
     list-style: none;
+    transition: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 
 .sidebar ul li {
@@ -101,6 +106,27 @@ canvas {
     color: var(--accent-color);
     cursor: pointer;
 }
+
+.sidebar ul li {
+    margin: 20px 0;
+    text-align: center;
+    transition: transform 0.4s ease;
+}
+
+/* Animation des icônes au survol */
+.sidebar ul li a {
+    color: var(--text-color);
+    font-size: 1.2em;
+    transition: transform 0.3s ease, color 0.3s ease;
+    display: inline-block;
+}
+
+.sidebar ul li a:hover {
+    color: var(--accent-color);
+    transform: scale(1.2) rotate(360deg);
+    cursor: pointer;
+}
+
 
 /* Bouton de changement de thème */
 .theme-toggle {
