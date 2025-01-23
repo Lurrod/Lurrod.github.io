@@ -5,39 +5,25 @@
     --accent-color: #ff4655;
     --sidebar-bg: #181C14;
     --card-bg: #333;
-    --skill-html: #ff4655;
-    --skill-css: #ff8a65;
-    --skill-js: #ffd54f;
     --contact-bg: #fe908b;
     --contact-hover: #ff607d;
     --shadow-color1: #ff7e75;
     --shadow-color2: #ffffff;
-    --particle-color-1-dark: #ff4655;
-    --particle-color-2-dark: #ff7e75;
-    --particle-color-3-dark: #ffe4e6;
-    --particle-color-4-dark: #ffbaba;
-    --particle-color-5-dark: #ff4d4f;
     --shadow: rgba(255, 255, 255, 0.3);
+    --preview-title: rgba(0, 0, 0, 0.7);
 }
 .light-theme {
     --background-color: #f5f5f5;
     --text-color: #333333;
-    --accent-color: #28a745;
+    --accent-color: #ff4655;
     --sidebar-bg: #e0e0e0;
     --card-bg: #ffffff;
-    --skill-html: #4CAF50;
-    --skill-css: #66BB6A;
-    --skill-js: #81C784;
-    --contact-bg: #cae1d1;
-    --contact-hover: #56fc7c;
-    --shadow-color1: #66BB6A;
-    --shadow-color2: #96d699;
-    --particle-color-1-light: #28a745; 
-    --particle-color-2-light: #ff6f61;
-    --particle-color-3-light: #ffb3b3;
-    --particle-color-4-light: #ffcccb;  
-    --particle-color-5-light: #ff7070; 
-    --shadow: rgba(0, 0, 0, 0.3)
+    --contact-bg: #fe908b;
+    --contact-hover: #ff607d;
+    --shadow-color1: #ff7e75;
+    --shadow-color2: #ffffff;
+    --shadow: rgba(0, 0, 0, 0.3);
+    --preview-title: rgba(255, 255, 255, 0.7);
 }
 
 /* Styles globaux */
@@ -248,7 +234,7 @@ canvas {
     width: 100%;
     top: 0;
     left: 0;
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: var(--preview-title);
     z-index: 1;
 }
 

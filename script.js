@@ -77,7 +77,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Fonction pour ouvrir un projet
     function expandProject(card) {
-        if (currentExpandedProject) return; // Empêche d'ouvrir un autre projet tant que l'actuel est ouvert
+        if (currentExpandedProject) return;
 
         const expandedProject = document.createElement('div');
         expandedProject.className = 'project-expanded';
