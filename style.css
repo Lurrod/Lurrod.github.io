@@ -138,11 +138,20 @@ canvas {
     border: 2px solid var(--text-color);
 }
 
-.flag {
-    width: 100%;     
+.theme-toggle button:hover {
+    background-color: var(--text-color);
+    border: 2px solid var(--background-color);
 }
 
-.fas{
+.theme-toggle button:hover i {
+    color: var(--background-color);
+}
+
+.flag {
+    width: 100%;
+}
+
+.fas {
     color: var(--text-color);
 }
 
@@ -540,7 +549,11 @@ canvas {
 }
 
 .skills-button i {
-    font-size: 1.2em;
+    color: var(--text-color);
+}
+
+.skills-button:hover i {
+    color: var(--accent-color);
 }
 
 .skills-button:hover {
