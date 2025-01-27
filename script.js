@@ -55,8 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (subHeading) {
             subHeading.style.color = 'var(--text-color)';
             const originalText = subHeading.textContent;
-            subHeading.textContent = '';
-            createGlitchEffect('Web Developer', subHeading);
+                createGlitchEffect('Développeur Web', subHeading);
         }
     },);
 });

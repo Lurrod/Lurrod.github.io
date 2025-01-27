@@ -141,6 +141,7 @@ canvas {
 .theme-toggle button:hover {
     background-color: var(--text-color);
     border: 2px solid var(--background-color);
+    cursor: pointer;
 }
 
 .theme-toggle button:hover i {
@@ -220,10 +221,15 @@ canvas {
     background-color: var(--card-bg);
     border-radius: 12px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
     cursor: pointer;
     overflow: hidden;
     position: relative;
+}
+
+.project-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
 .project-card .fa-chevron-down {
@@ -452,7 +458,7 @@ canvas {
     color: #ddd;
     cursor: pointer;
     max-width: 150px;
-    flex: 1 1 calc(33.33% - 2rem); /* Largeur adaptable pour trois colonnes */
+    flex: 1 1 calc(33.33% - 2rem);
     box-sizing: border-box;
 }
 
@@ -544,42 +550,42 @@ canvas {
 }
 
 .skills-button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    border-radius: 25px;
     background-color: var(--accent-color);
     color: var(--text-color);
     border: none;
-    border-radius: 25px;
-    padding: 12px 25px;
     font-size: 1em;
     font-weight: bold;
     cursor: pointer;
     transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     text-align: center;
-    display: flex;
-    align-items: center;
-    gap: 10px;
     text-decoration: none;
-}
-
-.skills-button i {
+  }
+  
+  .skills-button i {
     color: var(--text-color);
-}
-
-.skills-button:hover i {
+  }
+  
+  .skills-button:hover i {
     color: var(--accent-color);
-}
-
-.skills-button:hover {
+  }
+  
+  .skills-button:hover {
     background-color: var(--text-color);
     color: var(--accent-color);
     transform: translateY(-5px);
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
-}
-
-.skills-button:active {
+  }
+  
+  .skills-button:active {
     transform: translateY(2px);
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
-}
+  }
 
 /* Certification Dropdown */
 .dropdown {
