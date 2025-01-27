@@ -423,36 +423,40 @@ canvas {
     max-width: 600px;
 }
 
-.skills h2{
+.skills h2 {
     margin-bottom: 20%;
 }
 
-.skill-container{
-    display: grid;
-    grid-template-columns: repeat(3,1fr);
+.skill-container {
+    display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    text-align: center;
-    grid-gap: 20rem;
+    gap: 2rem; /* espace entre les éléments */
     padding: 1rem 80px;
+    text-align: center;
     font-size: 1.2rem;
 }
 
-.skill-box{
+.skill-box {
     padding: 1rem;
     color: #ddd;
     cursor: pointer;
+    max-width: 150px;
+    flex: 1 1 calc(33.33% - 2rem); /* Largeur adaptable pour trois colonnes */
+    box-sizing: border-box;
 }
 
-.skill-box:hover  .skill-title:after, .skill-box:hover  .skill-title:before{
+.skill-box:hover .skill-title:after,
+.skill-box:hover .skill-title:before {
     width: 35px;
 }
 
-.skill-box:hover .skill-image{
+.skill-box:hover .skill-image {
     transform: translateY(-10px);
 }
 
-.skill-title{
+.skill-title {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -461,7 +465,7 @@ canvas {
     position: relative;
 }
 
-.skill-title:after{
+.skill-title:after {
     content: '';
     position: absolute;
     bottom: 0;
@@ -470,10 +474,10 @@ canvas {
     height: 4px;
     border-radius: 2px 0 0 2px;
     background-color: var(--accent-color);
-    transition: .5s;
+    transition: 0.5s;
 }
 
-.skill-title:before{
+.skill-title:before {
     content: '';
     position: absolute;
     bottom: 0;
@@ -482,15 +486,15 @@ canvas {
     height: 4px;
     border-radius: 0 2px 2px 0;
     background-color: var(--accent-color);
-    transition: .5s;
+    transition: 0.5s;
 }
 
-.skill-title h3{
+.skill-title h3 {
     color: var(--text-color);
     margin-top: 0.5rem;
 }
 
-.skill-image{
+.skill-image {
     width: 90px;
     height: 90px;
     position: relative;
@@ -499,10 +503,10 @@ canvas {
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: .5s;
+    transition: 0.5s;
 }
 
-.skill-image:after{
+.skill-image:after {
     content: '';
     position: absolute;
     top: 0;
@@ -513,7 +517,7 @@ canvas {
     border-radius: 45px 0 0 45px;
 }
 
-.skill-icon{
+.skill-icon {
     width: 50px;
     z-index: 2;
 }
@@ -566,6 +570,134 @@ canvas {
 .skills-button:active {
     transform: translateY(2px);
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* Certification Dropdown */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-toggle {
+    background-color: var(--accent-color);
+    color: var(--text-color);
+    border: none;
+    border-radius: 25px;
+    padding: 12px 25px;
+    font-size: 1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.dropdown-toggle i {
+    transition: transform 0.3s ease;
+}
+
+.dropdown-toggle:hover {
+    background-color: var(--text-color);
+    color: var(--accent-color);
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+}
+
+.dropdown-toggle:hover i {
+    transform: rotate(360deg);
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: calc(100% + 10px);
+    left: 50%;
+    transform: translateX(-50%) translateY(-10px);
+    background-color: var(--card-bg);
+    border-radius: 12px;
+    padding: 0.8rem;
+    min-width: 250px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.dropdown-menu::before {
+    content: '';
+    position: absolute;
+    top: -8px;
+    left: 50%;
+    transform: translateX(-50%) rotate(45deg);
+    width: 16px;
+    height: 16px;
+    background-color: var(--card-bg);
+}
+
+.dropdown-menu:not(.hidden) {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+}
+
+.dropdown-menu a {
+    display: block;
+    padding: 12px 16px;
+    color: var(--text-color);
+    text-decoration: none;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.dropdown-menu a:not(:last-child) {
+    margin-bottom: 0.5rem;
+}
+
+.dropdown-menu a::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 0;
+    background-color: var(--accent-color);
+    opacity: 0.1;
+    transition: width 0.3s ease;
+}
+
+.dropdown-menu a:hover {
+    color: var(--accent-color);
+    transform: translateX(5px);
+}
+
+.dropdown-menu a:hover::before {
+    width: 100%;
+}
+
+.hidden {
+    display: none !important;
+}
+
+@media screen and (max-width: 768px) {
+    .dropdown-menu {
+        position: fixed;
+        top: auto;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%) translateY(100%);
+        width: 90%;
+        max-width: 400px;
+        background-color: var(--card-bg);
+        border-radius: 12px;
+        box-shadow: 0 -5px 25px rgba(0, 0, 0, 0.2);
+    }
+
+    .dropdown-menu:not(.hidden) {
+        transform: translateX(-50%) translateY(0);
+    }
 }
 
 /* Section Contact */

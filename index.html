@@ -140,11 +140,7 @@
               <i class="fa-solid fa-chevron-down"></i>
             </div>
           </h3>
-          <img
-            class="project-thumbnail"
-            src=""
-            alt="Projet 4 preview"
-          />
+          <img class="project-thumbnail" src="" alt="Projet 4 preview" />
         </div>
 
         <!-- Projet 5 -->
@@ -161,11 +157,7 @@
               <i class="fa-solid fa-chevron-down"></i>
             </div>
           </h3>
-          <img
-            class="project-thumbnail"
-            src=""
-            alt="Projet 5 preview"
-          />
+          <img class="project-thumbnail" src="" alt="Projet 5 preview" />
         </div>
       </div>
       <div id="projectTemplate" style="display: none">
@@ -198,8 +190,7 @@
         </div>
       </div>
     </section>
-
-    <!-- Section Compétences -->
+   <!-- Section Compétences -->
     <section id="competences" class="section">
       <div class="skills">
         <h2 id="competences_heading">Compétences</h2>
@@ -226,7 +217,7 @@
                 <img
                   src="images/js.svg"
                   class="skill-icon"
-                  alt="JavaScirpt icon"
+                  alt="JavaScript icon"
                 />
               </div>
               <h3 id="js_skill">JavaScript</h3>
@@ -234,21 +225,19 @@
           </div>
         </div>
         <div class="certification">
-          <a
-            class="skills-button"
-            href="/images/certification.png"
-            download="Responsive_Web_Design_Certification1"
-          >
-            <i class="fas fa-download"></i> Responsive Web Design Certification
-          </a>
-          <a
-            class="skills-button"
-            href="/images/certification2.png"
-            download="JavaScript_Algorithms_and_Data_Structures_Certification"
-          >
-            <i class="fas fa-download"></i> JavaScript Algorithms and Data
-            Structures Certification
-          </a>
+          <div class="dropdown">
+            <button class="skills-button" id="certificationButton">
+              <i class="fas fa-certificate"></i> Voir les certifications
+            </button>
+            <div class="dropdown-menu hidden" id="certificationMenu">
+              <a href="/images/certification.png" download="Responsive_Web_Design_Certification1">
+                Responsive Web Design Certification
+              </a>
+              <a href="/images/certification2.png" download="JavaScript_Algorithms_and_Data_Structures_Certification">
+                JavaScript Algorithms and Data Structures Certification
+              </a>
+            </div>
+          </div>          
           <a
             class="skills-button"
             href="/images/Titouan BORDE - CV.pdf"
@@ -259,7 +248,7 @@
         </div>
       </div>
     </section>
-
+    
     <!-- Section Contact -->
     <section id="contact" class="section">
       <h2 id="contact_heading">Contact</h2>

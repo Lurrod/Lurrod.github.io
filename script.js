@@ -1,3 +1,85 @@
+// Fonction pour créer un effet de glitch sur le texte
+function createGlitchEffect(text, element) {
+    const chars = 'abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*';
+    const originalText = text;
+    let iterations = 0;
+    const maxIterations = 15;
+    
+    const interval = setInterval(() => {
+        element.innerText = originalText
+            .split('')
+            .map((char, index) => {
+                if (index < iterations) {
+                    return originalText[index];
+                }
+                return chars[Math.floor(Math.random() * chars.length)];
+            })
+            .join('');
+        
+        iterations += 1/3;
+        
+        if (iterations >= originalText.length) {
+            clearInterval(interval);
+            element.innerText = originalText;
+            // Ajouter un curseur clignotant après le texte
+            const cursor = document.createElement('span');
+            cursor.innerHTML = '|';
+            cursor.style.opacity = '1';
+            cursor.style.marginLeft = '5px';
+            cursor.style.animation = 'blink 1s infinite';
+            element.appendChild(cursor);
+        }
+    }, 50);
+}
+
+// Attendre que le contenu soit chargé
+document.addEventListener('DOMContentLoaded', () => {
+    // Animation du titre principal
+    const accueilHeading = document.querySelector('.accueil-heading');
+    accueilHeading.textContent = '';
+    
+    // Correction de la fonction typewriterEffect pour éviter la duplication des lettres
+    function typewriterEffect(element, text, delay = 100) {
+        let i = 0;
+        element.textContent = ''; // Assurez-vous que l'élément est vide
+        function type() {
+            if (i < text.length) {
+                element.textContent = text.slice(0, i + 1); // Utilisez slice au lieu d'ajouter des caractères
+                i++;
+                setTimeout(type, delay);
+            }
+        }
+        type();
+    }
+    
+    typewriterEffect(accueilHeading, "Titouan Borde", 100);
+
+    // Animation du sous-titre après le titre principal
+    setTimeout(() => {
+        const subHeading = document.querySelector('.header-h3');
+        if (subHeading) {
+            subHeading.style.color = 'var(--text-color)'; // Garde la couleur blanche
+            const originalText = subHeading.textContent;
+            subHeading.textContent = '';
+            createGlitchEffect('Web Developer', subHeading);
+        }
+    },);
+});
+
+// Ajouter le style CSS pour le curseur clignotant
+const style = document.createElement('style');
+style.textContent = `
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+.header-h3 {
+    font-family: 'Courier New', monospace;
+    color: var(--text-color) !important; // Force la couleur blanche
+}
+`;
+
+document.head.appendChild(style);
 document.getElementById('toggleTheme').addEventListener('click', () => {
     document.body.classList.toggle('light-theme');
     const themeButton = document.getElementById('toggleTheme');
@@ -138,6 +220,25 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
+document.addEventListener("DOMContentLoaded", () => {
+    const certificationButton = document.getElementById("certificationButton");
+    const certificationMenu = document.getElementById("certificationMenu");
+  
+    if (certificationButton && certificationMenu) {
+        certificationButton.addEventListener("click", () => {
+            certificationMenu.classList.toggle("hidden");
+            certificationButton.classList.toggle("active");
+        });
+  
+        // Ferme le menu si clic en dehors
+        document.addEventListener("click", (e) => {
+            if (!certificationMenu.contains(e.target) && !certificationButton.contains(e.target)) {
+                certificationMenu.classList.add("hidden");
+                certificationButton.classList.remove("active");
+            }
+        });
+    }
+});
 
 document.querySelector('.contact-form').addEventListener('submit', function (e) {
     e.preventDefault();
