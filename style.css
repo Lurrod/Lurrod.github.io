@@ -148,7 +148,16 @@ canvas {
 }
 
 .flag {
-    width: 100%;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+    transition: transform 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--background-color);
+    border: 2px solid var(--text-color);
 }
 
 .fas {

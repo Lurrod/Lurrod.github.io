@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title id="title">Titouan Borde Portfolio</title>
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="../style.css" />
     <link
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
       rel="stylesheet"
@@ -15,20 +15,20 @@
       href="https://fonts.googleapis.com/css2?family=Edu+AU+VIC+WA+NT+Guides:wght@400..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Itim&family=Sixtyfour+Convergence&display=swap"
       rel="stylesheet"
     />
-    <script src="script.js" defer></script>
+    <script src="../script.js" defer></script>
     <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
   </head>
   <body>
     <div class="sidebar">
       <ul>
         <li>
-          <a href="#accueil"><i class="fa-solid fa-house"></i></a>
+          <a href="#home"><i class="fa-solid fa-house"></i></a>
         </li>
         <li>
-          <a href="#projets"><i class="fa-solid fa-briefcase"></i></a>
+          <a href="#projects"><i class="fa-solid fa-briefcase"></i></a>
         </li>
         <li>
-          <a href="#competences"><i class="fa-solid fa-code"></i></a>
+          <a href="#skills"><i class="fa-solid fa-code"></i></a>
         </li>
         <li>
           <a href="#contact"><i class="fa-solid fa-envelope"></i></a>
@@ -36,33 +36,32 @@
       </ul>
     </div>
 
-    <!-- Section d'accueil -->
-    <section id="accueil" class="section">
+    <!-- Home Section -->
+    <section id="home" class="section">
       <div class="theme-toggle">
         <button id="toggleTheme">
           <i class="fas fa-moon"></i>
         </button>
-        <a href="/en/index.html" id="toggleLanguage">
-          <img id="languageFlag" src="/images/france.png" alt="Language" class="flag"/>
-        </a>
+        <a href="/index.html" id="toggleLanguage">
+            <img id="languageFlag" src="../images/anglais.png" alt="Language" class="flag"/>
+          </a>
       </div>
       <h1 class="accueil-heading" id="accueil_heading">TITOUAN BORDE</h1>
       <h3 class="header-h3" id="accueil_subheading">Développeur Web</h3>
     </section>
 
-    <!-- Section Projets -->
-    <section id="projets" class="section">
-      <h2 id="projets_heading">Projets</h2>
-      <p id="projets_description">
-        Découvrez mes projets récents, qu'ils soient personnels ou à des fins
-        d'apprentissage.
+    <!-- Projects Section -->
+    <section id="projects" class="section">
+      <h2 id="projects_heading">Projects</h2>
+      <p id="projects_description">
+        Discover my recent projects, whether personal or for learning purposes.
       </p>
       <div class="projects-grid">
-        <!-- Projet 1 -->
+        <!-- Project 1 -->
         <div
           class="project-card minimized"
-          data-title="Projet 1"
-          data-description="Ce projet est l'un des cinq nécessaires pour valider ma certification FreeCodeCamp d'intégrateur web. Il simule un site de location immobilière. (toutes informations présentent sur ce site est factice et inventé dans le cadre de l'exercice)"
+          data-title="Project 1"
+          data-description="This project is one of the five required to validate my FreeCodeCamp web developer certification. It simulates a real estate rental website. (all information on this site is fictitious and created for the purpose of the exercise)"
           data-github="https://github.com/Lurrod/freecodecamp/tree/main/responsive-web-design/projet1"
           data-preview="https://lurrod.github.io/projet1/projet1.html"
         >
@@ -74,16 +73,16 @@
           </h3>
           <img
             class="project-thumbnail"
-            src="/images/project1_preview.png"
-            alt="Projet 1 preview"
+            src="../images/project1_preview.png"
+            alt="Project 1 preview"
           />
         </div>
 
-        <!-- Projet 2 -->
+        <!-- Project 2 -->
         <div
           class="project-card minimized"
-          data-title="Projet 2"
-          data-description="Ce projet est l'un des cinq nécessaires pour valider ma certification FreeCodeCamp d'intégrateur web. Ce site est une documentation technique du jeu Valorant."
+          data-title="Project 2"
+          data-description="This project is one of the five required to validate my FreeCodeCamp web developer certification. This site is a technical documentation for the game Valorant."
           data-github="https://github.com/Lurrod/freecodecamp/tree/main/responsive-web-design/projet2"
           data-preview="https://lurrod.github.io/projet2/projet2.html"
         >
@@ -95,16 +94,16 @@
           </h3>
           <img
             class="project-thumbnail"
-            src="images/project2_preview.png"
-            alt="Projet 2 preview"
+            src="../images/project2_preview.png"
+            alt="Project 2 preview"
           />
         </div>
 
-        <!-- Projet 3 -->
+        <!-- Project 3 -->
         <div
           class="project-card minimized"
-          data-title="Projet 3"
-          data-description="Ce projet est l'un des cinq nécessaires pour valider ma certification JavaScript. Ce site permet de vérifier si un mot est un palindrome ou non, de plus chaque palindrome vérifié est listé."
+          data-title="Project 3"
+          data-description="This project is one of the five required to validate my JavaScript certification. This site allows you to check if a word is a palindrome or not, and each verified palindrome is listed."
           data-github="https://github.com/Lurrod/freecodecamp/tree/main/javascript-algorithms-and-data-structures/projet1"
           data-preview="https://lurrod.github.io/projet3/projet3.html"
         >
@@ -116,43 +115,43 @@
           </h3>
           <img
             class="project-thumbnail"
-            src="images/project3_preview.png"
-            alt="Projet 3 preview"
+            src="../images/project3_preview.png"
+            alt="Project 3 preview"
           />
         </div>
 
-        <!-- Projet 4 -->
+        <!-- Project 4 -->
         <div
           class="project-card minimized"
-          data-title="Projet 4"
-          data-description="Un portfolio avec une mise en page grid et des effets de transition"
+          data-title="Project 4"
+          data-description="A portfolio with a grid layout and transition effects"
           data-github="https://github.com/Lurrod/freecodecamp/tree/main/responsive-web-design/projet4"
           data-preview="https://lurrod.github.io/projet4/projet4.html"
         >
           <h3>
             <div class="project-header-content">
-              <span>Projet 4</span>
+              <span>Project 4</span>
               <i class="fa-solid fa-chevron-down"></i>
             </div>
           </h3>
-          <img class="project-thumbnail" src="" alt="Projet 4 preview" />
+          <img class="project-thumbnail" src="" alt="Project 4 preview" />
         </div>
 
-        <!-- Projet 5 -->
+        <!-- Project 5 -->
         <div
           class="project-card minimized"
-          data-title="Projet 5"
-          data-description="Une application web interactive avec JavaScript"
+          data-title="Project 5"
+          data-description="An interactive web application with JavaScript"
           data-github="https://github.com/Lurrod/freecodecamp/tree/main/responsive-web-design/projet5"
           data-preview="https://lurrod.github.io/projet5/projet5.html"
         >
           <h3>
             <div class="project-header-content">
-              <span>Projet 5</span>
+              <span>Project 5</span>
               <i class="fa-solid fa-chevron-down"></i>
             </div>
           </h3>
-          <img class="project-thumbnail" src="" alt="Projet 5 preview" />
+          <img class="project-thumbnail" src="" alt="Project 5 preview" />
         </div>
       </div>
       <div id="projectTemplate" style="display: none">
@@ -169,31 +168,32 @@
             <iframe class="project-iframe" title="Project Preview"></iframe>
           </div>
           <div class="project-description">
-            <h4>Description du projet</h4>
+            <h4>Project Description</h4>
             <p></p>
             <div class="project-actions">
               <a class="project-button github-link" target="_blank">
                 <i class="fab fa-github"></i>
-                Voir sur GitHub
+                View on GitHub
               </a>
               <a class="project-button preview-link" target="_blank">
                 <i class="fas fa-external-link-alt"></i>
-                Voir le site
+                View Site
               </a>
             </div>
           </div>
         </div>
       </div>
     </section>
-   <!-- Section Compétences -->
-    <section id="competences" class="section">
+
+    <!-- Skills Section -->
+    <section id="skills" class="section">
       <div class="skills">
-        <h2 id="competences_heading">Compétences</h2>
+        <h2 id="skills_heading">Skills</h2>
         <div class="skill-container">
           <div class="skill-box">
             <div class="skill-title">
               <div class="skill-image">
-                <img src="images/html.svg" class="skill-icon" alt="HTML icon" />
+                <img src="../images/html.svg" class="skill-icon" alt="HTML icon" />
               </div>
               <h3 id="html_skill">HTML 5</h3>
             </div>
@@ -201,7 +201,7 @@
           <div class="skill-box">
             <div class="skill-title">
               <div class="skill-image">
-                <img src="images/css.svg" class="skill-icon" alt="CSS icon" />
+                <img src="../images/css.svg" class="skill-icon" alt="CSS icon" />
               </div>
               <h3 id="css_skill">CSS 3</h3>
             </div>
@@ -210,7 +210,7 @@
             <div class="skill-title">
               <div class="skill-image">
                 <img
-                  src="images/js.svg"
+                  src="../images/js.svg"
                   class="skill-icon"
                   alt="JavaScript icon"
                 />
@@ -222,44 +222,43 @@
         <div class="certification">
           <div class="dropdown">
             <button class="skills-button" id="certificationButton">
-              <i class="fas fa-solid fa-graduation-cap"></i> Voir les certifications
+              <i class="fas fa-solid fa-graduation-cap"></i> View Certifications
             </button>
             <div class="dropdown-menu hidden" id="certificationMenu">
-              <a href="/images/certification.png" download="Responsive_Web_Design_Certification1">
+              <a href="../images/certification.png" download="Responsive_Web_Design_Certification1">
                 Responsive Web Design Certification
               </a>
-              <a href="/images/certification2.png" download="JavaScript_Algorithms_and_Data_Structures_Certification">
+              <a href="../images/certification2.png" download="JavaScript_Algorithms_and_Data_Structures_Certification">
                 JavaScript Algorithms and Data Structures Certification
               </a>
             </div>
-          </div>          
+          </div>
           <a
             class="skills-button"
-            href="/images/Titouan BORDE - CV.pdf"
+            href="../images/Titouan BORDE - CV.pdf"
             download="BORDE_Titouan_CV"
           >
-            <i class="fas fa-download"></i> Télécharger mon CV
+            <i class="fas fa-download"></i> Download my CV
           </a>
         </div>
       </div>
     </section>
-    
-    <!-- Section Contact -->
+
+    <!-- Contact Section -->
     <section id="contact" class="section">
       <h2 id="contact_heading">Contact</h2>
       <p id="contact_description">
-        N'hésitez pas à me contacter pour discuter de nouvelles opportunités ou
-        collaborations.
+        Feel free to contact me to discuss new opportunities or collaborations.
       </p>
       <form class="contact-form" method="POST">
-        <label for="nom" id="label_nom">Nom</label>
+        <label for="name" id="label_name">Name</label>
         <div class="input-container">
           <i class="fas fa-user-circle"></i>
           <input
             type="text"
-            name="nom"
-            id="nom"
-            placeholder="Votre Nom"
+            name="name"
+            id="name"
+            placeholder="Your Name"
             required
           />
         </div>
@@ -271,7 +270,7 @@
             type="email"
             name="email"
             id="email"
-            placeholder="Votre Email"
+            placeholder="Your Email"
             required
           />
         </div>
@@ -282,11 +281,11 @@
           <textarea
             name="message"
             id="message"
-            placeholder="Votre Message"
+            placeholder="Your Message"
             required
           ></textarea>
         </div>
-        <button type="submit" id="submit_button">Envoyer</button>
+        <button type="submit" id="submit_button">Send</button>
       </form>
       <script>
         (function () {
@@ -310,7 +309,7 @@
           ></a>
         </div>
         <small id="footer_text"
-          >&copy; 2024 Titouan Borde. Tous droits réservés.</small
+          >&copy; 2024 Titouan Borde. All rights reserved.</small
         >
       </div>
     </footer>

@@ -32,19 +32,16 @@ function createGlitchEffect(text, element) {
     }, 50);
 }
 
-// Attendre que le contenu soit chargé
 document.addEventListener('DOMContentLoaded', () => {
-    // Animation du titre principal
     const accueilHeading = document.querySelector('.accueil-heading');
     accueilHeading.textContent = '';
     
-    // Correction de la fonction typewriterEffect pour éviter la duplication des lettres
     function typewriterEffect(element, text, delay = 100) {
         let i = 0;
-        element.textContent = ''; // Assurez-vous que l'élément est vide
+        element.textContent = '';
         function type() {
             if (i < text.length) {
-                element.textContent = text.slice(0, i + 1); // Utilisez slice au lieu d'ajouter des caractères
+                element.textContent = text.slice(0, i + 1);
                 i++;
                 setTimeout(type, delay);
             }
@@ -53,12 +50,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     typewriterEffect(accueilHeading, "Titouan Borde", 100);
-
-    // Animation du sous-titre après le titre principal
     setTimeout(() => {
         const subHeading = document.querySelector('.header-h3');
         if (subHeading) {
-            subHeading.style.color = 'var(--text-color)'; // Garde la couleur blanche
+            subHeading.style.color = 'var(--text-color)';
             const originalText = subHeading.textContent;
             subHeading.textContent = '';
             createGlitchEffect('Web Developer', subHeading);
@@ -66,7 +61,6 @@ document.addEventListener('DOMContentLoaded', () => {
     },);
 });
 
-// Ajouter le style CSS pour le curseur clignotant
 const style = document.createElement('style');
 style.textContent = `
 @keyframes blink {
@@ -157,7 +151,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     createOverlay();
 
-    // Fonction pour ouvrir un projet
     function expandProject(card) {
         if (currentExpandedProject) return;
 
@@ -165,14 +158,12 @@ document.addEventListener('DOMContentLoaded', function () {
         expandedProject.className = 'project-expanded';
         expandedProject.innerHTML = projectTemplate.innerHTML;
 
-        // Remplir les informations du projet
         expandedProject.querySelector('.project-title h3').textContent = card.dataset.title;
         expandedProject.querySelector('.project-description p').textContent = card.dataset.description;
         expandedProject.querySelector('.project-iframe').src = card.dataset.preview;
         expandedProject.querySelector('.github-link').href = card.dataset.github;
         expandedProject.querySelector('.preview-link').href = card.dataset.preview;
 
-        // Ajouter au DOM
         document.body.appendChild(expandedProject);
         overlay.style.display = 'block';
         requestAnimationFrame(() => {
@@ -180,39 +171,31 @@ document.addEventListener('DOMContentLoaded', function () {
             overlay.style.opacity = '1';
         });
 
-        // Désactiver le défilement du body
         document.body.style.overflow = 'hidden';
 
-        // Stocker la référence du projet développé
         currentExpandedProject = expandedProject;
 
-        // Ajouter les gestionnaires d'événements
         expandedProject.querySelector('.close-button').addEventListener('click', closeExpandedProject);
     }
 
-    // Fonction pour fermer un projet
     function closeExpandedProject() {
         if (!currentExpandedProject) return;
 
-        // Masquer et supprimer le projet développé
         currentExpandedProject.style.display = 'none';
         overlay.style.opacity = '0';
         setTimeout(() => {
             currentExpandedProject.remove();
             overlay.style.display = 'none';
-            currentExpandedProject = null; // Réinitialiser après suppression
-        }, 300); // Délai pour les animations
+            currentExpandedProject = null;
+        }, 300);
 
-        // Réactiver le défilement du body
         document.body.style.overflow = '';
     }
 
-    // Ajouter les événements pour chaque carte
     projectCards.forEach((card) => {
         card.addEventListener('click', () => expandProject(card));
     });
 
-    // Gestion des touches "Échap" pour fermer un projet
     document.addEventListener('keydown', function (event) {
         if (event.key === 'Escape' && currentExpandedProject) {
             closeExpandedProject();
@@ -229,8 +212,7 @@ document.addEventListener("DOMContentLoaded", () => {
             certificationMenu.classList.toggle("hidden");
             certificationButton.classList.toggle("active");
         });
-  
-        // Ferme le menu si clic en dehors
+
         document.addEventListener("click", (e) => {
             if (!certificationMenu.contains(e.target) && !certificationButton.contains(e.target)) {
                 certificationMenu.classList.add("hidden");
