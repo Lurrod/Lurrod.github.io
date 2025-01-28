@@ -84,21 +84,6 @@ document.getElementById('toggleTheme').addEventListener('click', () => {
     }
 });
 
-document.addEventListener('DOMContentLoaded', () => {
-    const toggleLanguageButton = document.getElementById('toggleLanguage');
-    const languageFlag = document.getElementById('languageFlag');
-    let isFrench = true;
-    toggleLanguageButton.addEventListener('click', () => {
-        if (isFrench) {
-            languageFlag.src = 'images/anglais.png';
-        } else {
-            languageFlag.src = 'images/france.png';
-        }
-        isFrench = !isFrench;
-    });
-});
-
-
 const accueilHeading = document.querySelector('.accueil-heading');
 accueilHeading.textContent = '';
 typewriterEffect(accueilHeading, "TITOUAN BORDE");
