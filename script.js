@@ -1,4 +1,34 @@
-// Fonction pour créer un effet de glitch sur le texte
+document.addEventListener('DOMContentLoaded', () => {
+    const accueilHeading = document.querySelector('.accueil-heading');
+    const subHeading = document.querySelector('.header-h3');
+    const isEnglishVersion = window.location.pathname.includes('/en/');
+    
+    accueilHeading.textContent = '';
+    
+    function typewriterEffect(element, text, delay = 100) {
+        let i = 0;
+        element.textContent = '';
+        function type() {
+            if (i < text.length) {
+                element.textContent = text.slice(0, i + 1);
+                i++;
+                setTimeout(type, delay);
+            }
+        }
+        type();
+    }
+    
+    typewriterEffect(accueilHeading, "Titouan Borde", 100);
+    
+    setTimeout(() => {
+        if (subHeading) {
+            subHeading.style.color = 'var(--text-color)';
+            const text = isEnglishVersion ? 'Web Developer' : 'Développeur Web';
+            createGlitchEffect(text, subHeading);
+        }
+    },);
+});
+
 function createGlitchEffect(text, element) {
     const chars = 'abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*';
     const originalText = text;
@@ -21,7 +51,6 @@ function createGlitchEffect(text, element) {
         if (iterations >= originalText.length) {
             clearInterval(interval);
             element.innerText = originalText;
-            // Ajouter un curseur clignotant après le texte
             const cursor = document.createElement('span');
             cursor.innerHTML = '|';
             cursor.style.opacity = '1';
@@ -31,34 +60,6 @@ function createGlitchEffect(text, element) {
         }
     }, 50);
 }
-
-document.addEventListener('DOMContentLoaded', () => {
-    const accueilHeading = document.querySelector('.accueil-heading');
-    accueilHeading.textContent = '';
-    
-    function typewriterEffect(element, text, delay = 100) {
-        let i = 0;
-        element.textContent = '';
-        function type() {
-            if (i < text.length) {
-                element.textContent = text.slice(0, i + 1);
-                i++;
-                setTimeout(type, delay);
-            }
-        }
-        type();
-    }
-    
-    typewriterEffect(accueilHeading, "Titouan Borde", 100);
-    setTimeout(() => {
-        const subHeading = document.querySelector('.header-h3');
-        if (subHeading) {
-            subHeading.style.color = 'var(--text-color)';
-            const originalText = subHeading.textContent;
-                createGlitchEffect('Développeur Web', subHeading);
-        }
-    },);
-});
 
 const style = document.createElement('style');
 style.textContent = `
@@ -97,17 +98,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-function typewriterEffect(element, text, delay = 100) {
-    let i = 0;
-    function type() {
-        if (i < text.length) {
-            element.textContent += text.charAt(i);
-            i++;
-            setTimeout(type, delay);
-        }
-    }
-    type();
-}
 
 const accueilHeading = document.querySelector('.accueil-heading');
 accueilHeading.textContent = '';
