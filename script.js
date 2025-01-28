@@ -78,9 +78,9 @@ document.getElementById('toggleTheme').addEventListener('click', () => {
     document.body.classList.toggle('light-theme');
     const themeButton = document.getElementById('toggleTheme');
     if (document.body.classList.contains('light-theme')) {
-        themeButton.innerHTML = '<i class="fas fa-sun"></i>';
-    } else {
         themeButton.innerHTML = '<i class="fas fa-moon"></i>';
+    } else {
+        themeButton.innerHTML = '<i class="fas fa-sun"></i>';
     }
 });
 
