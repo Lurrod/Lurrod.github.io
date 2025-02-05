@@ -132,6 +132,14 @@ document.addEventListener('DOMContentLoaded', function () {
         expandedProject.querySelector('.project-iframe').src = card.dataset.preview;
         expandedProject.querySelector('.github-link').href = card.dataset.github;
         expandedProject.querySelector('.preview-link').href = card.dataset.preview;
+        const skills = card.dataset.skills.split(', ');
+        const skillsList = expandedProject.querySelector('.project-skills');
+        skillsList.innerHTML = ''; // Vide la liste avant d'ajouter de nouveaux éléments
+        skills.forEach(skill => {
+            const skillItem = document.createElement('li');
+            skillItem.textContent = skill;
+            skillsList.appendChild(skillItem);
+        });
 
         document.body.appendChild(expandedProject);
         overlay.style.display = 'block';
