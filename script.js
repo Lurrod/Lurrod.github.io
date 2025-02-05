@@ -84,11 +84,6 @@ document.getElementById('toggleTheme').addEventListener('click', () => {
     }
 });
 
-const accueilHeading = document.querySelector('.accueil-heading');
-accueilHeading.textContent = '';
-typewriterEffect(accueilHeading, "TITOUAN BORDE");
-
-
 document.addEventListener("keydown", function(event) {
     const sections = document.querySelectorAll(".section");
     let currentSectionIndex = Array.from(sections).findIndex(section =>
