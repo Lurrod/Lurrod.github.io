@@ -832,6 +832,46 @@ canvas {
     opacity: 0.7;
 }
 
+/* Style pour le conteneur du champ de fichier 
+.file-input-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    position: relative;
+    padding-bottom: 15px;
+  }
+  
+  .file-input {
+    display: none;
+  }
+  
+  .custom-file-button {
+    background-color: var(--accent-color);
+    color: var(--text-color);
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    display: inline-block;
+    text-align: center;
+  }
+  
+  .custom-file-button:hover {
+    background-color: var(--text-color);
+    color: var(--accent-color);
+  }
+  
+  .custom-file-button:active {
+    transform: translateY(0);
+  }
+  
+  .file-name {
+    color: var(--text-color);
+    font-size: 0.9em;
+    margin-left: 10px;
+    opacity: 0.8;
+  } */
+
 /* Bouton Envoyer */
 .contact-form button {
     background-color: var(--accent-color);
