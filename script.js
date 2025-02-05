@@ -199,18 +199,20 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 });
 
-document.getElementById('file').addEventListener('change', function (e) {
-    const fileName = e.target.files[0] ? e.target.files[0].name : 'Aucun fichier sélectionné';
-    document.getElementById('file-name').textContent = fileName;
-  });
-
 document.querySelector('.contact-form').addEventListener('submit', function (e) {
     e.preventDefault();
     
     emailjs.sendForm('service_4a3pj9b', 'template_j71c1xs', this)
         .then(() => {
             alert('Message envoyé avec succès !');
+            this.reset();
         }, (error) => {
             alert('Échec de l\'envoi du message...', error);
         });
 });
+
+/* document.getElementById('file').addEventListener('change', function (e) {
+    const fileName = e.target.files[0] ? e.target.files[0].name : 'Aucun fichier sélectionné';
+    document.getElementById('file-name').textContent = fileName;
+  });*/
+
