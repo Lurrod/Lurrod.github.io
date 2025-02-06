@@ -460,30 +460,35 @@ canvas {
 .skills {
     margin-top: 20px;
     width: 80%;
-    max-width: 600px;
+    max-width: 1200px; /* Ajustez la largeur maximale selon vos besoins */
+    margin: 0 auto; /* Centrer la section */
 }
 
 .skills h2 {
-    margin-bottom: 20%;
+    margin-bottom: 20px;
+    text-align: center; /* Centrer le titre */
 }
 
 .skill-container {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    gap: 2rem; /* espace entre les éléments */
-    padding: 1rem 80px;
+    flex-wrap: wrap; /* Permet aux éléments de passer à la ligne si nécessaire */
+    justify-content: center; /* Centre les éléments horizontalement */
+    gap: 2rem; /* Espacement entre les éléments */
+    padding: 1rem;
     text-align: center;
     font-size: 1.2rem;
 }
 
 .skill-box {
+    flex: 1 1 150px; /* Flex-grow, flex-shrink, flex-basis */
+    max-width: 150px; /* Largeur maximale pour chaque boîte */
     padding: 1rem;
     color: #ddd;
     cursor: pointer;
-    max-width: 150px;
-    flex: 1 1 calc(33.33% - 2rem);
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centrer les éléments horizontalement */
+    justify-content: center; /* Centrer les éléments verticalement */
     box-sizing: border-box;
 }
 
@@ -532,6 +537,7 @@ canvas {
 .skill-title h3 {
     color: var(--text-color);
     margin-top: 0.5rem;
+    font-size: 1.2rem; /* Ajustez la taille du texte */
 }
 
 .skill-image {
@@ -559,7 +565,9 @@ canvas {
 
 .skill-icon {
     width: 50px;
+    height: 50px; /* Ajustez la taille des logos */
     z-index: 2;
+    object-fit: contain; /* Assurez-vous que les logos sont bien ajustés */
 }
 
 .hidden {
