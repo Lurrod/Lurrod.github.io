@@ -109,7 +109,6 @@ document.addEventListener('DOMContentLoaded', function () {
     let currentExpandedProject = null;
     let overlay = null;
 
-    // Création de l'overlay
     function createOverlay() {
         overlay = document.createElement('div');
         overlay.className = 'overlay';
@@ -134,7 +133,7 @@ document.addEventListener('DOMContentLoaded', function () {
         expandedProject.querySelector('.preview-link').href = card.dataset.preview;
         const skills = card.dataset.skills.split(', ');
         const skillsList = expandedProject.querySelector('.project-skills');
-        skillsList.innerHTML = ''; // Vide la liste avant d'ajouter de nouveaux éléments
+        skillsList.innerHTML = '';
         skills.forEach(skill => {
             const skillItem = document.createElement('li');
             skillItem.textContent = skill;
