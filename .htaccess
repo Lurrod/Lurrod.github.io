@@ -2,21 +2,22 @@
     RewriteEngine On
     RewriteBase /
 
-    # 🔥 DÉSACTIVE le slash automatique d'Apache (clé pour éviter la boucle)
+    # Désactive le listing des répertoires (plus jamais "Index of /en")
+    Options -Indexes
+
+    # Désactive l'ajout automatique de slash (pour garder /en sans /)
     DirectorySlash Off
 
     # Redirections 301 permanentes (nettoyage .html + slash)
     RewriteRule ^index\.html$ / [R=301,L]
     RewriteRule ^en/index\.html$ /en [R=301,L]
-    RewriteRule ^(.*)\.html$ /$1 [R=301,L]
     RewriteRule ^en/$ /en [R=301,L]
+    RewriteRule ^(.*)\.html$ /$1 [R=301,L]
 
-    # Réécritures internes silencieuses (le visiteur ne voit rien)
-    RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteCond %{REQUEST_FILENAME} !-d
+    # Réécritures internes (le visiteur ne voit jamais le .html)
+    # Page d'accueil française
     RewriteRule ^$ index.html [L]
 
-    RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteRule ^en$ en/index.html [L]
+    # Version anglaise (gère /en ET /en/ en une seule règle)
+    RewriteRule ^en/?$ en/index.html [L]
 </IfModule>
