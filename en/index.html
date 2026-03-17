@@ -1,361 +1,432 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title id="title">Titouan Borde Portfolio</title>
-    <link rel="stylesheet" href="../style.css" />
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-      rel="stylesheet"
-    />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Edu+AU+VIC+WA+NT+Guides:wght@400..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Itim&family=Sixtyfour+Convergence&display=swap"
-      rel="stylesheet"
-    />
-    <script src="../script.js" defer></script>
-    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
-  </head>
-  <body>
-    <div class="sidebar">
-      <ul>
-        <li>
-          <a href="#home"><i class="fa-solid fa-house"></i></a>
-        </li>
-        <li>
-          <a href="#projects"><i class="fa-solid fa-briefcase"></i></a>
-        </li>
-        <li>
-          <a href="#skills"><i class="fa-solid fa-code"></i></a>
-        </li>
-        <li>
-          <a href="#contact"><i class="fa-solid fa-envelope"></i></a>
-        </li>
-      </ul>
+<head>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-DV33X4HV8T"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-DV33X4HV8T');
+  </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Titouan Borde — Portfolio</title>
+  <link rel="stylesheet" href="../style.css" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,900&display=swap" rel="stylesheet" />
+  <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+  <script src="../script.js" defer></script>
+</head>
+<body>
+
+  <!-- Dot grid canvas -->
+  <canvas id="dotGrid"></canvas>
+
+  <!-- Noise grain -->
+  <div class="grain"></div>
+
+  <!-- Navigation -->
+  <nav class="topnav" id="topnav">
+    <div class="nav-brand">
+      <span class="brand-mark">TB</span>
     </div>
+    <div class="nav-links">
+      <a href="#home" class="nav-link active" data-section="home">Home</a>
+      <a href="#projects" class="nav-link" data-section="projects">Projects</a>
+      <a href="#skills" class="nav-link" data-section="skills">Skills</a>
+      <a href="#contact" class="nav-link" data-section="contact">Contact</a>
+    </div>
+    <div class="nav-actions">
+      <a href="/index.html" class="lang-btn" aria-label="Passer en français">FR</a>
+      <button id="toggleTheme" class="theme-btn" aria-label="Toggle theme">
+        <i class="fas fa-sun"></i>
+      </button>
+    </div>
+  </nav>
 
-    <!-- Home Section -->
-    <section id="home" class="section">
-      <div class="theme-toggle">
-        <button id="toggleTheme">
-          <i class="fas fa-sun"></i>
-        </button>
-        <a href="/index.html" id="toggleLanguage">
-          <img
-            id="languageFlag"
-            src="../images/france.png"
-            alt="Language"
-            class="flag"
-          />
-        </a>
-      </div>
-      <h1 class="accueil-heading" id="accueil_heading">TITOUAN BORDE</h1>
-      <h3 class="header-h3" id="accueil_subheading">Développeur Web</h3>
-    </section>
+  <!-- Progress bar -->
+  <div class="scroll-progress" id="scrollProgress"></div>
 
-    <!-- Projects Section -->
-    <section id="projects" class="section">
-      <h2 id="projects_heading">Projects</h2>
-      <p id="projects_description">
-        Discover my recent projects, whether personal or for learning purposes.
-      </p>
-      <div class="projects-grid">
-        <!-- Project 1 -->
-        <div
-          class="project-card minimized"
-          data-title="Project 1"
-          data-description="This project is one of the five required to validate my FreeCodeCamp web developer certification. It simulates a real estate rental website. (all information on this site is fictitious and created for the purpose of the exercise)"
-          data-github="https://github.com/Lurrod/freecodecamp/tree/main/responsive-web-design/projet1"
-          data-preview="https://lurrod.github.io/projet1/projet1.html"
-          data-skills="HTML, CSS, JavaScript"
-        >
-          <h3>
-            <div class="project-header-content">
-              <span>Product Landing Page</span>
-              <i class="fa-solid fa-chevron-down"></i>
-            </div>
-          </h3>
-          <img
-            class="project-thumbnail"
-            src="../images/project1_preview.png"
-            alt="Project 1 preview"
-          />
+  <!-- ═══════════════ HERO ═══════════════ -->
+  <section id="home" class="section hero">
+    <div class="hero-inner">
+      <div class="hero-left">
+        <div class="hero-tag anim-reveal">
+          <span class="tag-dot"></span>
+          <span>Available for new projects</span>
         </div>
-
-        <!-- Project 2 -->
-        <div
-          class="project-card minimized"
-          data-title="Project 2"
-          data-description="This project is one of the five required to validate my FreeCodeCamp web developer certification. This site is a technical documentation for the game Valorant."
-          data-github="https://github.com/Lurrod/freecodecamp/tree/main/responsive-web-design/projet2"
-          data-preview="https://lurrod.github.io/projet2/projet2.html"
-          data-skills="HTML, CSS"
-        >
-          <h3>
-            <div class="project-header-content">
-              <span>Technical Documentation Page</span>
-              <i class="fa-solid fa-chevron-down"></i>
-            </div>
-          </h3>
-          <img
-            class="project-thumbnail"
-            src="../images/project2_preview.png"
-            alt="Project 2 preview"
-          />
-        </div>
-
-        <!-- Project 3 -->
-        <div
-          class="project-card minimized"
-          data-title="Project 3"
-          data-description="This project is one of the five required to validate my JavaScript certification. This site allows you to check if a word is a palindrome or not, and each verified palindrome is listed."
-          data-github="https://github.com/Lurrod/freecodecamp/tree/main/javascript-algorithms-and-data-structures/projet1"
-          data-preview="https://lurrod.github.io/projet3/projet3.html"
-          data-skills="HTML, CSS, JavaScript"
-        >
-          <h3>
-            <div class="project-header-content">
-              <span>Palindrome Checker</span>
-              <i class="fa-solid fa-chevron-down"></i>
-            </div>
-          </h3>
-          <img
-            class="project-thumbnail"
-            src="../images/project3_preview.png"
-            alt="Project 3 preview"
-          />
-        </div>
-
-        <!-- Project 4 -->
-        <div
-          class="project-card minimized"
-          data-title="Broken Esport site"
-          data-description="During my internship, I developed the showcase website for the Broken Esport organization."
-          data-github=""
-          data-preview="https://broken-esport.fr/"
-          data-skills="HTML, CSS, JavaScript"
-        >
-          <h3>
-            <div class="project-header-content">
-              <span>Broken Esport website</span>
-              <i class="fa-solid fa-chevron-down"></i>
-            </div>
-          </h3>
-          <img class="project-thumbnail" src="../images/project4_preview.png" alt="Project 4 preview" />
-
-        </div>
-
-        <!-- Project 5 -->
-
-        <div
-          class="project-card minimized"
-          data-title="Vol d'histoire"
-          data-description="This is my end-of-year project: a documentation site about fighter jets, with a complete database."
-          data-github="https://github.com/Lurrod/vol_histoire"
-          data-preview="https://vol-histoire.titouan-borde.com/"
-          data-skills="HTML, CSS, JavaScript, SQL"
-        >
-          <h3>
-            <div class="project-header-content">
-              <span>Vol d'histoire website</span>
-              <i class="fa-solid fa-chevron-down"></i>
-            </div>
-          </h3>
-          <img class="project-thumbnail" src="../images/project5_preview.png" alt="Project 5 preview" />
-        </div>
-      </div>
-      <div id="projectTemplate" style="display: none">
-        <div class="project-header">
-          <div class="project-title">
-            <h3></h3>
-          </div>
-          <button class="close-button">
-            <i class="fas fa-times"></i>
-          </button>
-        </div>
-        <div class="project-content">
-          <div class="preview-container">
-            <iframe class="project-iframe" title="Project Preview"></iframe>
-          </div>
-          <div class="project-description">
-            <h4>Project Description</h4>
-            <p></p>
-            <div class="project-actions">
-              <a class="project-button github-link" target="_blank">
-                <i class="fab fa-github"></i>
-                View on GitHub
-              </a>
-              <a class="project-button preview-link" target="_blank">
-                <i class="fas fa-external-link-alt"></i>
-                View Site
-              </a>
-            </div>
-            <h4>Skill used</h4>
-            <ul class="project-skills"></ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Skills Section -->
-    <section id="skills" class="section">
-      <div class="skills">
-        <h2 id="skills_heading">Skills</h2>
-        <div class="skill-container">
-          <div class="skill-box">
-            <div class="skill-title">
-              <div class="skill-image">
-                <img
-                  src="../images/html.svg"
-                  class="skill-icon"
-                  alt="HTML icon"
-                />
-              </div>
-              <h3 id="html_skill">HTML 5</h3>
-            </div>
-          </div>
-          <div class="skill-box">
-            <div class="skill-title">
-              <div class="skill-image">
-                <img
-                  src="../images/css.svg"
-                  class="skill-icon"
-                  alt="CSS icon"
-                />
-              </div>
-              <h3 id="css_skill">CSS 3</h3>
-            </div>
-          </div>
-          <div class="skill-box">
-            <div class="skill-title">
-              <div class="skill-image">
-                <img
-                  src="../images/js.svg"
-                  class="skill-icon"
-                  alt="JavaScript icon"
-                />
-              </div>
-              <h3 id="js_skill">JavaScript</h3>
-            </div>
-          </div>
-          <div class="skill-box">
-            <div class="skill-title">
-              <div class="skill-image">
-                <img src="../images/sql.svg" class="skill-icon" alt="SQL icon" />
-              </div>
-              <h3 id="css_skill">SQL</h3>
-            </div>
-          </div>
-        </div>
-        <div class="certification">
-          <div class="dropdown">
-            <button class="skills-button" id="certificationButton">
-              <i class="fas fa-solid fa-graduation-cap"></i> View Certifications
-            </button>
-            <div class="dropdown-menu hidden" id="certificationMenu">
-              <a
-                href="../images/certification.png"
-                download="Responsive_Web_Design_Certification1"
-              >
-                Responsive Web Design Certification
-              </a>
-              <a
-                href="../images/certification2.png"
-                download="JavaScript_Algorithms_and_Data_Structures_Certification"
-              >
-                JavaScript Algorithms and Data Structures Certification
-              </a>
-              <a
-                href="/images/certification3.png"
-                download="Back End Development and APIs"
-              >
-                Back End Development and APIs
-              </a>
-            </div>
-          </div>
-          <a
-            class="skills-button"
-            href="../images/Titouan BORDE - CV.pdf"
-            download="BORDE_Titouan_CV"
-          >
-            <i class="fas fa-download"></i> Download my CV
+        <h1 class="hero-title">
+          <span class="title-line anim-reveal" data-delay="0.1">
+            <span class="title-word" data-magnetic>Titouan</span>
+          </span>
+          <span class="title-line anim-reveal" data-delay="0.25">
+            <span class="title-word accent" data-magnetic>Borde<span class="title-dot">.</span></span>
+          </span>
+        </h1>
+        <p class="hero-sub anim-reveal" data-delay="0.4">
+          Web Developer passionate about creating modern, high-performance, and memorable digital experiences.
+        </p>
+        <div class="hero-actions anim-reveal" data-delay="0.55">
+          <a href="#projects" class="btn-main" data-magnetic>
+            <span>Explore my projects</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+          </a>
+          <a href="/images/Titouan BORDE - CV.pdf" download="BORDE_Titouan_CV" class="btn-ghost" data-magnetic>
+            <span>Download CV</span>
+            <i class="fas fa-arrow-down"></i>
           </a>
         </div>
       </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="section">
-      <h2 id="contact_heading">Contact</h2>
-      <p id="contact_description">
-        Feel free to contact me to discuss new opportunities or collaborations.
-      </p>
-      <form class="contact-form" method="POST">
-        <label for="name" id="label_name">Name</label>
-        <div class="input-container">
-          <i class="fas fa-user-circle"></i>
-          <input
-            type="text"
-            name="name"
-            id="name"
-            placeholder="Your Name"
-            required
-          />
+      <div class="hero-right anim-reveal" data-delay="0.3">
+        <div class="hero-visual">
+          <div class="visual-ring ring-1"></div>
+          <div class="visual-ring ring-2"></div>
+          <div class="visual-ring ring-3"></div>
+          <div class="visual-code">
+            <div class="code-line"><span class="code-key">name</span><span class="code-colon">:</span> <span class="code-val">"Titouan Borde"</span></div>
+            <div class="code-line"><span class="code-key">role</span><span class="code-colon">:</span> <span class="code-val">"Web Developer"</span></div>
+            <div class="code-line"><span class="code-key">stack</span><span class="code-colon">:</span> <span class="code-arr">[</span><span class="code-val">HTML</span>, <span class="code-val">CSS</span>, <span class="code-val">JS</span>, <span class="code-val">Node</span>, <span class="code-val">SQL</span><span class="code-arr">]</span></div>
+            <div class="code-cursor">|</div>
+          </div>
         </div>
-
-        <label for="email" id="label_email">Email</label>
-        <div class="input-container">
-          <i class="fas fa-at"></i>
-          <input
-            type="email"
-            name="email"
-            id="email"
-            placeholder="Your Email"
-            required
-          />
-        </div>
-
-        <label for="message" id="label_message">Message</label>
-        <div class="input-container">
-          <i class="fas fa-paper-plane"></i>
-          <textarea
-            name="message"
-            id="message"
-            placeholder="Your Message"
-            required
-          ></textarea>
-        </div>
-        <button type="submit" id="submit_button">Send</button>
-      </form>
-      <script>
-        (function () {
-          emailjs.init("9QItNZ3bWwbMtdqwc");
-        })();
-      </script>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-      <div class="footer-content">
-        <div class="social-links">
-          <a href="https://github.com/lurrod" target="_blank"
-            ><i class="fab fa-github"></i
-          ></a>
-          <a
-            href="https://www.linkedin.com/in/titouan-borde-ab481833a"
-            target="_blank"
-            ><i class="fab fa-linkedin"></i
-          ></a>
-          <a href="https://www.instagram.com/titouan.borde" target="_blank"
-            ><i class="fa-brands fa-instagram"></i
-          ></a>
-        </div>
-        <small id="footer_text"
-          >&copy; 2024 Titouan Borde. All rights reserved.</small
-        >
       </div>
-    </footer>
-  </body>
+    </div>
+    <div class="scroll-cue">
+      <span>Scroll</span>
+      <div class="scroll-track"><div class="scroll-thumb"></div></div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ PROJECTS ═══════════════ -->
+  <section id="projects" class="section projects-section">
+    <div class="section-intro anim-reveal">
+      <span class="section-idx">01</span>
+      <h2 class="section-title">Projects<span class="title-dot">.</span></h2>
+      <p class="section-sub">A selection of my most accomplished work.</p>
+    </div>
+
+    <!-- ── FEATURED PROJECT : Vol d'Histoire ── -->
+    <article class="project-featured anim-reveal" data-delay="0.1">
+      <div class="featured-badge">
+        <i class="fas fa-star"></i> Featured project
+      </div>
+      <div class="featured-layout">
+        <div class="featured-visual">
+          <div class="card-browser">
+            <div class="browser-dots"><i></i><i></i><i></i></div>
+            <span class="browser-url">vol-histoire.titouan-borde.com</span>
+          </div>
+          <div class="featured-img-wrap">
+            <img src="/images/vol-histoire_preview.png" alt="Vol d'Histoire — Preview" class="featured-img" loading="lazy" />
+            <div class="featured-img-overlay">
+              <a href="https://vol-histoire.titouan-borde.com/" target="_blank" class="overlay-btn-lg" data-magnetic>
+                <i class="fas fa-external-link-alt"></i>
+                <span>Explore the site</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="featured-content">
+          <div class="featured-top">
+            <span class="card-tag"><i class="fas fa-plane"></i> End-of-year project</span>
+          </div>
+          <h3 class="featured-title">Vol d'Histoire</h3>
+          <p class="featured-desc">
+            Interactive encyclopedia of military aviation since 1960. Complete aircraft catalog with detailed technical specs, interactive timeline, authentication system, and personalized favorites.
+          </p>
+          <p class="featured-desc-detail">
+            Full-stack architecture: vanilla frontend connected to a Node.js/Express backend with a relational PostgreSQL database. Dynamic search, advanced filtering, pagination, and an admin interface for editors.
+          </p>
+
+          <div class="featured-stats">
+            <div class="stat-item">
+              <span class="stat-number" data-count="45">0</span>
+              <span class="stat-label">Aircraft</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number" data-count="12">0</span>
+              <span class="stat-label">Nations</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number" data-count="17">0</span>
+              <span class="stat-label">Conflicts</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number" data-count="150">0</span>
+              <span class="stat-label">Weapons</span>
+            </div>
+          </div>
+
+          <div class="featured-tech">
+            <span class="tech-pill"><i class="fab fa-html5 tech-icon-fa"></i> HTML</span>
+            <span class="tech-pill"><i class="fab fa-css3-alt tech-icon-fa"></i> CSS</span>
+            <span class="tech-pill"><i class="fab fa-js tech-icon-fa"></i> JavaScript</span>
+            <span class="tech-pill"><i class="fas fa-database tech-icon-fa"></i> PostgreSQL</span>
+            <span class="tech-pill node-pill"><i class="fab fa-node-js tech-icon-fa"></i> Node.js</span>
+            <span class="tech-pill express-pill">Express</span>
+          </div>
+
+          <div class="featured-actions">
+            <a href="https://vol-histoire.titouan-borde.com/" target="_blank" class="btn-main" data-magnetic>
+              <span>View site</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+            </a>
+            <a href="https://github.com/Lurrod/vol_histoire" target="_blank" class="btn-ghost" data-magnetic>
+              <span><i class="fab fa-github"></i> Source code</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="featured-features anim-reveal" data-delay="0.3">
+        <div class="feature-chip">
+          <i class="fas fa-search"></i>
+          <span>Dynamic search</span>
+        </div>
+        <div class="feature-chip">
+          <i class="fas fa-filter"></i>
+          <span>Advanced filters</span>
+        </div>
+        <div class="feature-chip">
+          <i class="fas fa-clock"></i>
+          <span>Interactive timeline</span>
+        </div>
+        <div class="feature-chip">
+          <i class="fas fa-heart"></i>
+          <span>Favorites system</span>
+        </div>
+        <div class="feature-chip">
+          <i class="fas fa-user-shield"></i>
+          <span>Authentication</span>
+        </div>
+        <div class="feature-chip">
+          <i class="fas fa-database"></i>
+          <span>REST API</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- ── PROJECT 2 : Broken Esport ── -->
+    <article class="project-card-v2 anim-reveal" data-delay="0.15">
+      <div class="cardv2-visual">
+        <div class="card-browser">
+          <div class="browser-dots"><i></i><i></i><i></i></div>
+          <span class="browser-url">broken-esport.fr</span>
+        </div>
+        <div class="cardv2-img-wrap">
+          <img src="/images/broken_preview.png" alt="Broken Esport — Preview" class="cardv2-img" loading="lazy" />
+          <div class="cardv2-img-overlay">
+            <a href="https://broken-esport.fr/" target="_blank" class="overlay-btn" data-magnetic>
+              <i class="fas fa-external-link-alt"></i>
+              <span>View site</span>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="cardv2-body">
+        <div class="cardv2-top">
+          <span class="card-tag"><i class="fas fa-gamepad"></i> Professional internship</span>
+          <span class="cardv2-year">2025</span>
+        </div>
+        <h3 class="cardv2-title">Broken Esport</h3>
+        <p class="cardv2-desc">
+          Professional showcase website built during my internship for the Broken Esport organization. Dark and immersive design faithful to the brand identity, featuring team presentations, event gallery, sponsors page, and an integrated donation system.
+        </p>
+
+        <div class="cardv2-highlights">
+          <div class="highlight-item">
+            <i class="fas fa-users"></i>
+            <span>Team pages</span>
+          </div>
+          <div class="highlight-item">
+            <i class="fas fa-handshake"></i>
+            <span>Sponsors section</span>
+          </div>
+          <div class="highlight-item">
+            <i class="fas fa-images"></i>
+            <span>Event gallery</span>
+          </div>
+          <div class="highlight-item">
+            <i class="fas fa-donate"></i>
+            <span>Donation system</span>
+          </div>
+        </div>
+
+        <div class="cardv2-tech">
+          <span>HTML</span><span>CSS</span><span>JavaScript</span><span>Node.js</span><span>Express</span>
+        </div>
+        <div class="cardv2-actions">
+          <a href="https://broken-esport.fr/" target="_blank" class="link-main">View site <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+    </article>
+
+  </section>
+
+  <!-- ═══════════════ SKILLS ═══════════════ -->
+  <section id="skills" class="section skills-section">
+    <div class="section-intro anim-reveal">
+      <span class="section-idx">02</span>
+      <h2 class="section-title">Skills<span class="title-dot">.</span></h2>
+      <p class="section-sub">Technologies and tools I work with on a daily basis.</p>
+    </div>
+
+    <div class="skills-constellation anim-reveal" data-delay="0.15">
+      <div class="skill-node" data-skill="HTML5" style="--x: 10%; --y: 28%;">
+        <div class="node-icon"><i class="fab fa-html5"></i></div>
+        <div class="node-label">HTML 5</div>
+        <div class="node-pulse"></div>
+      </div>
+      <div class="skill-node" data-skill="CSS3" style="--x: 28%; --y: 12%;">
+        <div class="node-icon"><i class="fab fa-css3-alt"></i></div>
+        <div class="node-label">CSS 3</div>
+        <div class="node-pulse"></div>
+      </div>
+      <div class="skill-node" data-skill="JavaScript" style="--x: 50%; --y: 32%;">
+        <div class="node-icon"><i class="fab fa-js"></i></div>
+        <div class="node-label">JavaScript</div>
+        <div class="node-pulse"></div>
+      </div>
+      <div class="skill-node" data-skill="Node.js" style="--x: 72%; --y: 14%;">
+        <div class="node-icon"><i class="fab fa-node-js"></i></div>
+        <div class="node-label">Node.js</div>
+        <div class="node-pulse"></div>
+      </div>
+      <div class="skill-node" data-skill="Express" style="--x: 90%; --y: 30%;">
+        <div class="node-icon"><span class="node-text-icon">Ex</span></div>
+        <div class="node-label">Express</div>
+        <div class="node-pulse"></div>
+      </div>
+      <div class="skill-node" data-skill="PostgreSQL" style="--x: 22%; --y: 65%;">
+        <div class="node-icon"><i class="fas fa-database"></i></div>
+        <div class="node-label">PostgreSQL</div>
+        <div class="node-pulse"></div>
+      </div>
+      <div class="skill-node" data-skill="Git" style="--x: 50%; --y: 72%;">
+        <div class="node-icon"><i class="fab fa-git-alt"></i></div>
+        <div class="node-label">Git</div>
+        <div class="node-pulse"></div>
+      </div>
+      <div class="skill-node" data-skill="Jest" style="--x: 78%; --y: 65%;">
+        <div class="node-icon"><span class="node-text-icon">Jt</span></div>
+        <div class="node-label">Jest</div>
+        <div class="node-pulse"></div>
+      </div>
+      <!-- Connecting lines drawn via CSS/JS -->
+      <svg class="constellation-lines" viewBox="0 0 1000 400" preserveAspectRatio="none">
+        <line x1="100" y1="112" x2="280" y2="48" />
+        <line x1="280" y1="48" x2="500" y2="128" />
+        <line x1="500" y1="128" x2="720" y2="56" />
+        <line x1="720" y1="56" x2="900" y2="120" />
+        <line x1="100" y1="112" x2="220" y2="260" />
+        <line x1="500" y1="128" x2="500" y2="288" />
+        <line x1="500" y1="288" x2="220" y2="260" />
+        <line x1="500" y1="288" x2="780" y2="260" />
+        <line x1="780" y1="260" x2="900" y2="120" />
+      </svg>
+    </div>
+
+    <div class="certif-section anim-reveal" data-delay="0.3">
+      <h3 class="certif-heading">Certifications</h3>
+      <div class="certif-cards">
+        <a href="/images/certification.png" download="Responsive_Web_Design_Certification" class="certif-card" data-magnetic>
+          <div class="certif-icon"><i class="fas fa-award"></i></div>
+          <div class="certif-info">
+            <span class="certif-name">Responsive Web Design</span>
+            <span class="certif-source">freeCodeCamp</span>
+          </div>
+          <i class="fas fa-download certif-dl"></i>
+        </a>
+        <a href="/images/certification2.png" download="JavaScript_Algorithms_Certification" class="certif-card" data-magnetic>
+          <div class="certif-icon"><i class="fas fa-award"></i></div>
+          <div class="certif-info">
+            <span class="certif-name">JS Algorithms & Data Structures</span>
+            <span class="certif-source">freeCodeCamp</span>
+          </div>
+          <i class="fas fa-download certif-dl"></i>
+        </a>
+        <a href="/images/certification3.png" download="Back_End_Development_APIs" class="certif-card" data-magnetic>
+          <div class="certif-icon"><i class="fas fa-award"></i></div>
+          <div class="certif-info">
+            <span class="certif-name">Back End Development & APIs</span>
+            <span class="certif-source">freeCodeCamp</span>
+          </div>
+          <i class="fas fa-download certif-dl"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ CONTACT ═══════════════ -->
+  <section id="contact" class="section contact-section">
+    <div class="contact-layout">
+      <div class="contact-left anim-reveal">
+        <span class="section-idx">03</span>
+        <h2 class="contact-headline">Let's talk<span class="title-dot">.</span></h2>
+        <p class="contact-sub">Have a project in mind? An opportunity? Send me a message and let's create something together.</p>
+        <div class="contact-socials">
+          <a href="https://github.com/lurrod" target="_blank" class="social-pill" data-magnetic>
+            <i class="fab fa-github"></i><span>GitHub</span>
+          </a>
+          <a href="https://www.linkedin.com/in/titouan-borde-ab481833a" target="_blank" class="social-pill" data-magnetic>
+            <i class="fab fa-linkedin"></i><span>LinkedIn</span>
+          </a>
+          <a href="https://www.instagram.com/titouan.borde" target="_blank" class="social-pill" data-magnetic>
+            <i class="fab fa-instagram"></i><span>Instagram</span>
+          </a>
+        </div>
+      </div>
+      <div class="contact-right anim-reveal" data-delay="0.2">
+        <form class="contact-form" id="contactForm" method="POST">
+          <div class="form-row">
+            <div class="form-field">
+              <input type="text" name="nom" id="nom" required placeholder=" " autocomplete="name" />
+              <label for="nom">Your name</label>
+            </div>
+            <div class="form-field">
+              <input type="email" name="email" id="email" required placeholder=" " autocomplete="email" />
+              <label for="email">Your email</label>
+            </div>
+          </div>
+          <div class="form-field">
+            <textarea name="message" id="message" rows="5" required placeholder=" "></textarea>
+            <label for="message">Your message</label>
+          </div>
+          <button type="submit" class="btn-submit" data-magnetic>
+            <span class="btn-text">Send message</span>
+            <span class="btn-icon"><i class="fas fa-paper-plane"></i></span>
+          </button>
+        </form>
+      </div>
+    </div>
+    <script>
+      (function(){ emailjs.init("9QItNZ3bWwbMtdqwc"); })();
+    </script>
+  </section>
+
+  <!-- ═══════════════ FOOTER ═══════════════ -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <span class="brand-mark">TB</span>
+        <span class="footer-copy">&copy; 2025 Titouan Borde</span>
+      </div>
+      <div class="footer-nav">
+        <a href="#home">Home</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <div class="footer-social">
+        <a href="https://github.com/lurrod" target="_blank"><i class="fab fa-github"></i></a>
+        <a href="https://www.linkedin.com/in/titouan-borde-ab481833a" target="_blank"><i class="fab fa-linkedin"></i></a>
+        <a href="https://www.instagram.com/titouan.borde" target="_blank"><i class="fab fa-instagram"></i></a>
+      </div>
+    </div>
+  </footer>
+
+</body>
 </html>
