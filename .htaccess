@@ -2,18 +2,20 @@
     RewriteEngine On
     RewriteBase /
 
-    # REDIRECTIONS 301 (nettoyage définitif)
+    # 🔥 DÉSACTIVE le slash automatique d'Apache (clé pour éviter la boucle)
+    DirectorySlash Off
+
+    # Redirections 301 permanentes (nettoyage .html + slash)
     RewriteRule ^index\.html$ / [R=301,L]
     RewriteRule ^en/index\.html$ /en [R=301,L]
-    RewriteRule ^en/$ /en [R=301,L]          # /en/ → /en (sans slash)
+    RewriteRule ^(.*)\.html$ /$1 [R=301,L]
+    RewriteRule ^en/$ /en [R=301,L]
 
-    # RÉÉCRITURE INTERNE (silencieuse)
-    # Racine
+    # Réécritures internes silencieuses (le visiteur ne voit rien)
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteRule ^$ index.html [L]
 
-    # /en (sans slash final)
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteRule ^en$ en/index.html [L]
