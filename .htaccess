@@ -1,0 +1,20 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
+
+    # REDIRECTIONS 301 (nettoyage définitif)
+    RewriteRule ^index\.html$ / [R=301,L]
+    RewriteRule ^en/index\.html$ /en [R=301,L]
+    RewriteRule ^en/$ /en [R=301,L]          # /en/ → /en (sans slash)
+
+    # RÉÉCRITURE INTERNE (silencieuse)
+    # Racine
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^$ index.html [L]
+
+    # /en (sans slash final)
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^en$ en/index.html [L]
+</IfModule>
