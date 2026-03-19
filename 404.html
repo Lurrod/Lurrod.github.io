@@ -427,17 +427,17 @@
 
   <!-- Navigation -->
   <nav class="topnav" id="topnav">
-    <a href="/" class="nav-brand">
+    <a id="navBrand" href="/" class="nav-brand">
       <span class="brand-mark">TB</span>
     </a>
-    <div class="nav-links">
-      <a href="/#accueil" class="nav-link" data-section="accueil">Accueil</a>
-      <a href="/#projets" class="nav-link" data-section="projets">Projets</a>
-      <a href="/#competences" class="nav-link" data-section="competences">Compétences</a>
-      <a href="/#contact" class="nav-link" data-section="contact">Contact</a>
+    <div class="nav-links" id="navLinks">
+      <a href="/#accueil" class="nav-link">Accueil</a>
+      <a href="/#projets" class="nav-link">Projets</a>
+      <a href="/#competences" class="nav-link">Compétences</a>
+      <a href="/#contact" class="nav-link">Contact</a>
     </div>
     <div class="nav-actions">
-      <a href="/en" class="lang-btn" aria-label="Switch to English">EN</a>
+      <a id="langBtn" href="/en" class="lang-btn" aria-label="Switch to English">EN</a>
       <button id="toggleTheme" class="theme-btn" aria-label="Changer de thème">
         <i class="fas fa-sun"></i>
       </button>
@@ -452,19 +452,19 @@
     <div class="error-content">
       <div class="error-code">404</div>
       <div class="error-divider"></div>
-      <h1 class="error-title">Page <span class="accent">introuvable.</span></h1>
-      <p class="error-description">
+      <h1 class="error-title" id="errorTitle">Page <span class="accent">introuvable.</span></h1>
+      <p class="error-description" id="errorDesc">
         La page que vous cherchez a été déplacée, supprimée,
         ou n'a peut-être jamais existé. Pas de panique, repartons sur de bonnes bases.
       </p>
       <div class="error-path" id="errorPath"></div>
       <div class="error-actions">
-        <a href="/" class="btn-main">
-          <span>Retour à l'accueil</span>
+        <a id="btnHome" href="/" class="btn-main">
+          <span id="btnHomeText">Retour à l'accueil</span>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
         </a>
         <button class="btn-ghost" onclick="history.back()">
-          <span>Page précédente</span>
+          <span id="btnBackText">Page précédente</span>
           <i class="fas fa-rotate-left"></i>
         </button>
       </div>
@@ -472,18 +472,58 @@
   </main>
 
   <script>
+    /* ═══════════════════════════════════
+       LANGUAGE DETECTION — FR / EN
+       Si l'URL commence par /en → anglais
+       Sinon → français (par défaut)
+       ═══════════════════════════════════ */
+    const isEN = /^\/en(\/|$)/i.test(window.location.pathname);
+
+    if (isEN) {
+      // HTML lang
+      document.documentElement.lang = 'en';
+      document.title = '404 \u2014 Page not found | Titouan Borde';
+
+      // Nav — brand
+      document.getElementById('navBrand').href = '/en';
+
+      // Nav — links
+      document.getElementById('navLinks').innerHTML =
+        '<a href="/en#home" class="nav-link">Home</a>' +
+        '<a href="/en#projects" class="nav-link">Projects</a>' +
+        '<a href="/en#skills" class="nav-link">Skills</a>' +
+        '<a href="/en#contact" class="nav-link">Contact</a>';
+
+      // Nav — lang switch
+      var langBtn = document.getElementById('langBtn');
+      langBtn.href = '/';
+      langBtn.textContent = 'FR';
+      langBtn.setAttribute('aria-label', 'Passer en fran\u00e7ais');
+
+      // Nav — theme btn aria
+      document.getElementById('toggleTheme').setAttribute('aria-label', 'Toggle theme');
+
+      // Content
+      document.getElementById('errorTitle').innerHTML = 'Page <span class="accent">not found.</span>';
+      document.getElementById('errorDesc').textContent =
+        "The page you\u2019re looking for has been moved, deleted, or may have never existed. No worries, let\u2019s get you back on track.";
+      document.getElementById('btnHome').href = '/en';
+      document.getElementById('btnHomeText').textContent = 'Back to home';
+      document.getElementById('btnBackText').textContent = 'Previous page';
+    }
+
     /* ─── Display current path ─── */
     document.getElementById('errorPath').textContent = window.location.pathname;
 
     /* ─── Nav scroll effect ─── */
-    const topnav = document.getElementById('topnav');
-    window.addEventListener('scroll', () => {
+    var topnav = document.getElementById('topnav');
+    window.addEventListener('scroll', function() {
       topnav.classList.toggle('scrolled', window.scrollY > 20);
     });
 
     /* ─── Theme Toggle ─── */
-    const themeBtn = document.getElementById('toggleTheme');
-    const icon = themeBtn.querySelector('i');
+    var themeBtn = document.getElementById('toggleTheme');
+    var icon = themeBtn.querySelector('i');
 
     function applyTheme(theme) {
       if (theme === 'light') {
@@ -495,25 +535,25 @@
       }
     }
 
-    const saved = localStorage.getItem('theme');
+    var saved = localStorage.getItem('theme');
     if (saved) applyTheme(saved);
 
-    themeBtn.addEventListener('click', () => {
-      const isLight = document.body.classList.toggle('light-theme');
-      const theme = isLight ? 'light' : 'dark';
+    themeBtn.addEventListener('click', function() {
+      var isLight = document.body.classList.toggle('light-theme');
+      var theme = isLight ? 'light' : 'dark';
       localStorage.setItem('theme', theme);
       icon.className = isLight ? 'fas fa-moon' : 'fas fa-sun';
     });
 
     /* ─── Dot Grid ─── */
-    const canvas = document.getElementById('dotGrid');
+    var canvas = document.getElementById('dotGrid');
     if (canvas) {
-      const ctx = canvas.getContext('2d');
-      let W, H, cols, rows;
-      const spacing = 40;
-      const dotBase = 1.2;
-      const interactRadius = 150;
-      let mouseX = -9999, mouseY = -9999;
+      var ctx = canvas.getContext('2d');
+      var W, H, cols, rows;
+      var spacing = 40;
+      var dotBase = 1.2;
+      var interactRadius = 150;
+      var mouseX = -9999, mouseY = -9999;
 
       function resize() {
         W = canvas.width = window.innerWidth;
@@ -525,8 +565,8 @@
       resize();
       window.addEventListener('resize', resize);
 
-      document.addEventListener('mousemove', e => { mouseX = e.clientX; mouseY = e.clientY; });
-      document.addEventListener('mouseleave', () => { mouseX = -9999; mouseY = -9999; });
+      document.addEventListener('mousemove', function(e) { mouseX = e.clientX; mouseY = e.clientY; });
+      document.addEventListener('mouseleave', function() { mouseX = -9999; mouseY = -9999; });
 
       function getAccentColor() {
         return getComputedStyle(document.documentElement).getPropertyValue('--accent').trim();
@@ -534,20 +574,20 @@
 
       function draw() {
         ctx.clearRect(0, 0, W, H);
-        const accent = getAccentColor();
-        for (let c = 0; c < cols; c++) {
-          for (let r = 0; r < rows; r++) {
-            const x = c * spacing;
-            const y = r * spacing;
-            const dx = x - mouseX;
-            const dy = y - mouseY;
-            const dist = Math.sqrt(dx * dx + dy * dy);
-            const t = Math.max(0, 1 - dist / interactRadius);
-            const radius = dotBase + t * 3.5;
-            const alpha = 0.12 + t * 0.65;
+        var accent = getAccentColor();
+        for (var c = 0; c < cols; c++) {
+          for (var r = 0; r < rows; r++) {
+            var x = c * spacing;
+            var y = r * spacing;
+            var dx = x - mouseX;
+            var dy = y - mouseY;
+            var dist = Math.sqrt(dx * dx + dy * dy);
+            var t = Math.max(0, 1 - dist / interactRadius);
+            var radius = dotBase + t * 3.5;
+            var alpha = 0.12 + t * 0.65;
             ctx.beginPath();
             ctx.arc(x, y, radius, 0, Math.PI * 2);
-            ctx.fillStyle = t > 0 ? accent : `rgba(${document.body.classList.contains('light-theme') ? '0,0,0' : '255,255,255'}, ${alpha})`;
+            ctx.fillStyle = t > 0 ? accent : 'rgba(' + (document.body.classList.contains('light-theme') ? '0,0,0' : '255,255,255') + ',' + alpha + ')';
             ctx.globalAlpha = alpha;
             ctx.fill();
             ctx.globalAlpha = 1;
@@ -560,41 +600,38 @@
     }
 
     /* ─── Floating particles ─── */
-    const particlesContainer = document.getElementById('particles');
-    const particleCount = 12;
+    var particlesContainer = document.getElementById('particles');
+    var particleCount = 12;
 
-    for (let i = 0; i < particleCount; i++) {
-      const p = document.createElement('div');
+    for (var i = 0; i < particleCount; i++) {
+      var p = document.createElement('div');
       p.className = 'particle';
-      const x = Math.random() * 100;
-      const y = Math.random() * 100;
-      const size = 2 + Math.random() * 4;
-      const dur = 6 + Math.random() * 10;
-      const delay = Math.random() * -dur;
+      var px = Math.random() * 100;
+      var py = Math.random() * 100;
+      var size = 2 + Math.random() * 4;
+      var dur = 6 + Math.random() * 10;
+      var delay = Math.random() * -dur;
 
-      Object.assign(p.style, {
-        left: x + '%',
-        top: y + '%',
-        width: size + 'px',
-        height: size + 'px',
-        animation: `particleFloat ${dur}s ${delay}s ease-in-out infinite`,
-        background: i % 3 === 0 ? 'var(--accent-alt)' : i % 3 === 1 ? 'var(--accent-warm)' : 'var(--accent)',
-      });
+      p.style.left = px + '%';
+      p.style.top = py + '%';
+      p.style.width = size + 'px';
+      p.style.height = size + 'px';
+      p.style.animation = 'particleFloat ' + dur + 's ' + delay + 's ease-in-out infinite';
+      p.style.background = i % 3 === 0 ? 'var(--accent-alt)' : i % 3 === 1 ? 'var(--accent-warm)' : 'var(--accent)';
 
       particlesContainer.appendChild(p);
     }
 
     // Inject particle keyframes
-    const style = document.createElement('style');
-    style.textContent = `
-      @keyframes particleFloat {
-        0%, 100% { opacity: 0; transform: translateY(0) scale(0.5); }
-        25% { opacity: 0.4; }
-        50% { opacity: 0.15; transform: translateY(-40px) scale(1); }
-        75% { opacity: 0.3; }
-      }
-    `;
-    document.head.appendChild(style);
+    var pStyle = document.createElement('style');
+    pStyle.textContent =
+      '@keyframes particleFloat {' +
+        '0%, 100% { opacity: 0; transform: translateY(0) scale(0.5); }' +
+        '25% { opacity: 0.4; }' +
+        '50% { opacity: 0.15; transform: translateY(-40px) scale(1); }' +
+        '75% { opacity: 0.3; }' +
+      '}';
+    document.head.appendChild(pStyle);
   </script>
 
 </body>
