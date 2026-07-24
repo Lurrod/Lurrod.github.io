@@ -23,6 +23,7 @@
     if (nav) nav.classList.toggle('scrolled', scrollY > 40);
     let cur = ids[0];
     for (const s of sections) { if (scrollY >= s.offsetTop - 160) cur = s.id; }
+    if (innerHeight + scrollY >= document.documentElement.scrollHeight - 2) cur = ids[ids.length - 1];
     links.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + cur));
     if (!reduceMo && plls.length) {
       const max = Math.max(1, document.documentElement.scrollHeight - innerHeight);
