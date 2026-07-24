@@ -7,11 +7,16 @@ ErrorDocument 404 /404.html
     # Force le slash final sur /en
     RewriteRule ^en$ /en/ [R=301,L]
 
-    # Redirections 301 permanentes (suppression du .html)
+    # Redirections 301 : index.html -> racine propre
     RewriteRule ^index\.html$ / [R=301,L]
     RewriteRule ^en/index\.html$ /en/ [R=301,L]
 
-    # Réécriture interne propre (sans que l'utilisateur voie le .html)
+    # Redirection 301 : toute page .html -> URL propre (sans .html)
+    # ex: /brutalisme.html -> /brutalisme , /en/webgl.html -> /en/webgl
+    RewriteCond %{THE_REQUEST} \s/+([^.\s]+)\.html[\s?] [NC]
+    RewriteRule ^ /%1 [R=301,L]
+
+    # Réécriture interne propre (l'utilisateur ne voit jamais le .html)
     # Racine /
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
@@ -21,4 +26,14 @@ ErrorDocument 404 /404.html
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteRule ^en/?$ en/index.html [L]
+
+    # Pages /en/<page>
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^en/([^/]+)/?$ en/$1.html [L]
+
+    # Pages racine /<page>
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^([^/]+)/?$ $1.html [L]
 </IfModule>
