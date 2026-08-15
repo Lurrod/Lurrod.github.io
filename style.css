@@ -279,7 +279,14 @@
     .form-status.err{color:#ff9d9d}
 
     /* ═══════════ FOOTER ═══════════ */
-    footer{border-top:1px solid var(--line-soft);padding:52px 0 40px;margin-top:40px}
+    footer{position:relative;isolation:isolate;overflow:hidden;border-top:1px solid var(--line-soft);padding:52px 0 clamp(190px,27vw,560px);margin-top:40px}
+    footer::before{content:"";position:absolute;left:0;right:0;bottom:0;z-index:-1;pointer-events:none;
+      aspect-ratio:1920/523;max-height:640px;
+      background:url("images/bg-footer.webp") center bottom/contain no-repeat;opacity:.55;
+      -webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 35%),linear-gradient(to right,transparent 0,#000 14%,#000 86%,transparent 100%);
+      -webkit-mask-composite:source-in;
+      mask-image:linear-gradient(to bottom,transparent 0,#000 35%),linear-gradient(to right,transparent 0,#000 14%,#000 86%,transparent 100%);
+      mask-composite:intersect}
     .foot-grid{display:flex;align-items:center;justify-content:space-between;gap:30px;flex-wrap:wrap}
     .foot-brand{display:flex;align-items:center;gap:14px;color:var(--dim);font-size:.86rem}
     .foot-nav{display:flex;gap:28px}
