@@ -4,8 +4,10 @@
   const lang = (document.documentElement.lang || 'fr').toLowerCase();
   const isEN = lang.startsWith('en');
   const T = isEN
-    ? { sending: 'Sending…', ok: "Message sent — thanks, I'll get back to you soon.", err: 'Something went wrong. Please retry or email me directly.' }
-    : { sending: 'Envoi en cours…', ok: 'Message envoyé — merci, je vous réponds vite.', err: 'Une erreur est survenue. Réessayez ou écrivez-moi directement.' };
+    ? { sending: 'Sending…', ok: "Message sent — thanks, I'll get back to you soon.", err: 'Something went wrong. Please retry or email me directly.',
+        invalid: 'Please check the highlighted fields.', rate: 'Too many messages in a short time. Please try again later.' }
+    : { sending: 'Envoi en cours…', ok: 'Message envoyé — merci, je vous réponds vite.', err: 'Une erreur est survenue. Réessayez ou écrivez-moi directement.',
+        invalid: 'Vérifiez les champs signalés.', rate: 'Trop de messages en peu de temps. Réessayez plus tard.' };
 
   const reduceMo = matchMedia('(prefers-reduced-motion:reduce)').matches;
 
@@ -88,23 +90,45 @@
     foot.addEventListener('pointerleave', () => { target = rest; run(); });
   }
 
-  /* Contact form — EmailJS */
-  if (window.emailjs) {
-    emailjs.init('9QItNZ3bWwbMtdqwc');
-    const form = document.getElementById('contactForm');
-    if (form) {
-      const status = document.getElementById('formStatus');
-      form.addEventListener('submit', function (e) {
-        e.preventDefault();
-        const btn = form.querySelector('.btn-submit');
-        const label = btn.querySelector('.bt');
-        const original = label.textContent;
-        btn.disabled = true; label.textContent = T.sending;
-        status.className = 'form-status'; status.textContent = '';
-        emailjs.sendForm('service_4a3pj9b', 'template_j71c1xs', this)
-          .then(() => { status.className = 'form-status ok'; status.textContent = T.ok; form.reset(); label.textContent = original; btn.disabled = false; })
-          .catch(() => { status.className = 'form-status err'; status.textContent = T.err; label.textContent = original; btn.disabled = false; });
-      });
-    }
+  /* Contact form — posted to the site's own API (server/), delivered by mail */
+  const form = document.getElementById('contactForm');
+  if (form) {
+    const status = document.getElementById('formStatus');
+    const btn = form.querySelector('.btn-submit');
+    const label = btn.querySelector('.bt');
+    const original = label.textContent;
+    const fields = [...form.querySelectorAll('input[name], textarea[name]')];
+    const setStatus = (kind, text) => { status.className = 'form-status' + (kind ? ' ' + kind : ''); status.textContent = text; };
+    const markInvalid = (names) => fields.forEach(f => f.toggleAttribute('aria-invalid', names.includes(f.name)));
+    const invalidFields = (body) => Object.keys((body && body.data && body.data.fields) || {});
+    const messageFor = (res, body) => {
+      if (res.status === 429) return T.rate;
+      if (res.status === 400 && invalidFields(body).length) return T.invalid;
+      return T.err;
+    };
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      btn.disabled = true; label.textContent = T.sending;
+      setStatus('', ''); markInvalid([]);
+      try {
+        const res = await fetch('/api/contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(Object.fromEntries(new FormData(form))),
+        });
+        const body = await res.json().catch(() => null);
+        if (res.ok && body && body.success) {
+          setStatus('ok', T.ok); form.reset();
+        } else {
+          markInvalid(invalidFields(body));
+          setStatus('err', messageFor(res, body));
+        }
+      } catch {
+        setStatus('err', T.err);
+      } finally {
+        label.textContent = original; btn.disabled = false;
+      }
+    });
   }
 })();

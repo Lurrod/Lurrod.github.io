@@ -279,6 +279,9 @@
     .form-field input:focus+label,.form-field textarea:focus+label,
     .form-field input:not(:placeholder-shown)+label,.form-field textarea:not(:placeholder-shown)+label{
       top:8px;font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:var(--lavender)}
+    /* Honeypot: off-screen, invisible to people and screen readers, filled only by bots */
+    .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+    .form-field [aria-invalid]{border-color:rgba(255,157,157,.55)}
     .btn-submit{width:100%;justify-content:center;margin-top:6px;border:none}
     .form-status{margin-top:16px;font-size:.86rem;text-align:center;min-height:20px;color:var(--dim);transition:color .4s}
     .form-status.ok{color:var(--glow-blue)}

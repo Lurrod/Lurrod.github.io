@@ -1,6 +1,7 @@
 ﻿<!DOCTYPE html>
 <html lang="fr">
 <head>
+  <script>if (location.hostname.endsWith('github.io')) location.replace('https://titouan-borde.com' + location.pathname + location.search + location.hash);</script>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-DV33X4HV8T"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -9,6 +10,7 @@
     gtag('config', 'G-DV33X4HV8T');
   </script>
   <meta charset="UTF-8" />
+  <link rel="canonical" href="https://titouan-borde.com/" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Titouan Borde - Développeur Web</title>
   <meta name="description" content="Titouan Borde, développeur web. Création d'expériences digitales atmosphériques, performantes et mémorables." />
@@ -19,7 +21,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@200;300;400;500;600&display=swap" rel="stylesheet" />
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
-  <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
 
   <link rel="stylesheet" href="style.css" />
 </head>
@@ -218,6 +219,7 @@
             <textarea name="message" id="message" required placeholder=" "></textarea>
             <label for="message">Votre message</label>
           </div>
+          <div class="hp" aria-hidden="true"><label for="website">Website</label><input type="text" name="website" id="website" tabindex="-1" autocomplete="off" /></div>
           <button type="submit" class="btn btn-fill btn-submit"><span class="bt">Envoyer le message</span> <i class="fas fa-paper-plane"></i></button>
           <p class="form-status" id="formStatus"></p>
         </form>

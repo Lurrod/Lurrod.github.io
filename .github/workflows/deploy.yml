@@ -1,0 +1,93 @@
+name: CI/CD
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  # ═══════════════════════════════════════════════════════════
+  # CI — tests de l'API de contact + audit des dépendances
+  # ═══════════════════════════════════════════════════════════
+  test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: server
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: server/package-lock.json
+
+      - run: npm ci
+
+      - name: Tests + couverture (80 % minimum)
+        run: npm run test:coverage
+
+      - name: Audit des dépendances de production
+        run: npm audit --omit=dev --audit-level=high
+
+  # ═══════════════════════════════════════════════════════════
+  # CD — déploiement sur le Kimsufi (push sur main uniquement)
+  # ═══════════════════════════════════════════════════════════
+  deploy:
+    needs: test
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    concurrency:
+      group: deploy-production
+      cancel-in-progress: false
+    steps:
+      - name: Déployer sur le serveur
+        uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            set -e
+            cd /var/www/titouan-borde.com
+
+            # Le dossier est servi tel quel par Apache : on le remet exactement
+            # sur origin/main. node_modules est ignoré par git, donc ni reset ni
+            # clean n'y touchent.
+            git fetch --quiet origin main
+            git reset --hard origin/main
+            git clean -fd
+            echo "Commit déployé : $(git rev-parse --short HEAD)"
+
+            cd server
+            npm ci --omit=dev --no-audit --no-fund
+            # Secrets hors du dossier servi par Apache (chmod 600).
+            pm2 restart portfolio-api \
+              || pm2 start index.js --name portfolio-api --node-args="--env-file=/home/ubuntu/portfolio-api.env"
+            pm2 save
+
+      # ─── Smoke tests post-déploiement ─────────────────────────
+      - name: Smoke test — site, API et fichiers privés
+        run: |
+          set -e
+          sleep 3
+          check() {
+            local url="$1" expected="$2" code
+            for i in 1 2 3; do
+              code=$(curl -s -o /tmp/body -w "%{http_code}" "$url" || echo 000)
+              [ "$code" = "$expected" ] && { echo "✓ $url → $code"; return 0; }
+              sleep 5
+            done
+            echo "✗ $url → $code (attendu $expected)"; cat /tmp/body; return 1
+          }
+          check https://titouan-borde.com/ 200
+          check https://titouan-borde.com/en/ 200
+          check https://titouan-borde.com/api/health 200
+          grep -q '"status":"ok"' /tmp/body
+          check https://titouan-borde.com/server/package.json 404
+          check https://titouan-borde.com/.git/HEAD 404

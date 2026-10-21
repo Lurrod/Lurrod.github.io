@@ -1,3 +1,7 @@
+# Le dépôt est déployé tel quel sur le serveur : seul le site statique est public.
+# L'API (server/) n'est joignable que via le ProxyPass /api/ du vhost.
+RedirectMatch 404 ^/(\.git[^/]*|server)(/|$)
+
 ErrorDocument 404 /404.html
 
 <IfModule mod_rewrite.c>
