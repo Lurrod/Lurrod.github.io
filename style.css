@@ -286,13 +286,35 @@
 
     /* ═══════════ FOOTER ═══════════ */
     footer{position:relative;isolation:isolate;overflow:hidden;border-top:1px solid var(--line-soft);
-      padding:52px 0 clamp(150px,calc(48px + 14vw),420px);margin-top:40px}
+      padding-top:52px;margin-top:40px}
 
-    /* ═══ Lueur du footer ═══ image ancrée en bas : l'arc reste toujours entier
-       en largeur sur grand écran ; sous 900 px on garde la partie centrale à
-       taille lisible plutôt qu'un liseré écrasé. */
-    .foot-glow{position:absolute;inset:0;z-index:-1;pointer-events:none;
-      background:url(images/footer-portfolio.webp) center bottom/max(100%,900px) auto no-repeat}
+    /* ═══ Signature lumineuse ═══════════════════════════════════════════════
+       Le nom, en très grand, posé sur le bord bas de la page qui en tranche
+       le pied. Au repos les lettres sont à peine gravées dans le noir ; une
+       source de lumière les éclaire de l'intérieur (blanc → lavande → bleu
+       pâle → rien). Une copie floutée derrière fait le bloom.
+       --gx/--gy = position de la source dans le mot, --gi = intensité.
+       Pointeur fin : script.js la fait suivre la souris avec retard amorti.
+       Tactile : elle dérive seule, lentement. */
+    @property --gx{syntax:'<percentage>';inherits:true;initial-value:50%}
+    @property --gy{syntax:'<percentage>';inherits:true;initial-value:35%}
+    @property --gi{syntax:'<number>';inherits:true;initial-value:.55}
+    .foot-sign{position:relative;margin:clamp(36px,5vw,72px) 0 -.3em;
+      font-size:16.6vw;line-height:1;font-weight:200;letter-spacing:-.035em;
+      text-align:center;white-space:nowrap;user-select:none;pointer-events:none}
+    .foot-sign span,.foot-sign::before{display:block;
+      background:radial-gradient(circle 2.3em at var(--gx) var(--gy),
+          rgba(255,255,255,calc(.95*var(--gi))),
+          rgba(199,183,255,calc(.75*var(--gi))) 28%,
+          rgba(168,217,255,calc(.3*var(--gi))) 56%,transparent 80%),
+        linear-gradient(rgba(247,245,242,.045),rgba(247,245,242,.045));
+      -webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent}
+    .foot-sign::before{content:attr(data-text);position:absolute;inset:0;z-index:-1;
+      filter:blur(.1em);opacity:.75}
+    @media(hover:none),(pointer:coarse){
+      .foot-sign{animation:signDrift 14s var(--ease-soft) infinite alternate}
+    }
+    @keyframes signDrift{from{--gx:12%;--gi:.7}50%{--gi:1}to{--gx:88%;--gi:.7}}
 
     .foot-grid{display:flex;align-items:center;justify-content:space-between;gap:30px;flex-wrap:wrap}
     .foot-brand{display:flex;align-items:center;gap:14px;color:var(--dim);font-size:.86rem}

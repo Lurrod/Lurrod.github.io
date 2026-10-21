@@ -65,6 +65,29 @@
     }, { passive: true });
   }
 
+  /* Footer signature — the inner light follows the pointer with an eased lag */
+  const sign = document.querySelector('.foot-sign');
+  if (sign && !reduceMo && matchMedia('(hover:hover) and (pointer:fine)').matches) {
+    const rest = { x: 50, y: 35, i: .55 };
+    let target = rest, cur = rest, raf = 0;
+    const tick = () => {
+      cur = { x: cur.x + (target.x - cur.x) * .07, y: cur.y + (target.y - cur.y) * .07, i: cur.i + (target.i - cur.i) * .05 };
+      sign.style.setProperty('--gx', cur.x + '%');
+      sign.style.setProperty('--gy', cur.y + '%');
+      sign.style.setProperty('--gi', cur.i);
+      const settled = Math.abs(target.x - cur.x) < .05 && Math.abs(target.y - cur.y) < .05 && Math.abs(target.i - cur.i) < .002;
+      raf = settled ? 0 : requestAnimationFrame(tick);
+    };
+    const run = () => { if (!raf) raf = requestAnimationFrame(tick); };
+    const foot = sign.closest('footer');
+    foot.addEventListener('pointermove', (e) => {
+      const r = sign.getBoundingClientRect();
+      target = { x: (e.clientX - r.left) / r.width * 100, y: (e.clientY - r.top) / r.height * 100, i: 1 };
+      run();
+    }, { passive: true });
+    foot.addEventListener('pointerleave', () => { target = rest; run(); });
+  }
+
   /* Contact form — EmailJS */
   if (window.emailjs) {
     emailjs.init('9QItNZ3bWwbMtdqwc');
