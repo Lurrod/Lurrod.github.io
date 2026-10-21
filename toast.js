@@ -9,7 +9,14 @@
   const LEAVE_MS = 350;
   const reduceMo = matchMedia('(prefers-reduced-motion:reduce)').matches;
   const closeLabel = (document.documentElement.lang || 'fr').toLowerCase().startsWith('en') ? 'Close' : 'Fermer';
-  const CLOSE_ICON = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>';
+  const svg = (d, size) => '<svg width="' + size + '" height="' + size + '" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + d + '</svg>';
+  const CLOSE_ICON = svg('<path d="M18 6 6 18M6 6l12 12"/>', 15);
+  // Lucide-style outline glyphs: check, cross, exclamation.
+  const TYPE_ICON = {
+    success: svg('<path d="M20 6 9 17l-5-5"/>', 14),
+    error: svg('<path d="M18 6 6 18M6 6l12 12"/>', 14),
+    info: svg('<path d="M12 5.5v8.5"/><path d="M12 18.5h.01"/>', 14),
+  };
 
   // The live region exists before any toast so screen readers announce additions.
   const region = document.createElement('div');
@@ -46,7 +53,9 @@
     close.innerHTML = CLOSE_ICON;
     close.addEventListener('click', () => dismiss(node));
 
-    node.append(el('span', 'toast-orb'), body, close);
+    const icon = el('span', 'toast-icon');
+    icon.innerHTML = TYPE_ICON[type];
+    node.append(icon, body, close);
     if (ms > 0) node.append(el('span', 'toast-bar'));
     return node;
   };
