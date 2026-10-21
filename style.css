@@ -120,7 +120,6 @@
     @keyframes titleUp{to{transform:none}}
     .hero h1 em{font-style:normal;background:linear-gradient(105deg,var(--cream),var(--lavender) 45%,var(--paleblue));
       -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
-    .hero h1 .fs{font-size:.42em;vertical-align:.28em;color:var(--purple);-webkit-text-fill-color:var(--purple)}
     .hero-sub{max-width:440px;font-size:1.06rem;color:var(--dim);margin-bottom:44px;font-weight:300}
     .hero-cta{display:flex;gap:16px;flex-wrap:wrap}
 
