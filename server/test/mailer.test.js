@@ -3,7 +3,7 @@ const { test } = require('node:test');
 const assert = require('node:assert/strict');
 const { buildMail, createMailer } = require('../src/mailer');
 
-const contact = { name: 'Ada Lovelace', email: 'ada@example.com', message: 'Bonjour,\nun projet à vous proposer.' };
+const contact = { name: 'Ada Lovelace', email: 'ada@example.com', message: 'Bonjour,\nun projet à vous proposer.', lang: 'fr' };
 const opts = { from: 'contact@titouan-borde.com', to: 'contact@titouan-borde.com' };
 
 test('buildMail sends from the site mailbox and replies to the visitor', () => {
@@ -14,12 +14,11 @@ test('buildMail sends from the site mailbox and replies to the visitor', () => {
   assert.equal(mail.subject, 'Nouveau message de Ada Lovelace');
 });
 
-test('buildMail puts the visitor details and message in a plain-text body', () => {
+test('buildMail carries both an HTML body and a plain-text fallback', () => {
   const { text, html } = buildMail(contact, opts);
-  assert.equal(html, undefined);
-  assert.match(text, /Ada Lovelace/);
-  assert.match(text, /ada@example\.com/);
   assert.match(text, /Bonjour,\nun projet à vous proposer\./);
+  assert.match(html, /^<!DOCTYPE html>/);
+  assert.match(html, /Bonjour,<br>un projet à vous proposer\./);
 });
 
 test('createMailer forwards the built message to the transport', async () => {

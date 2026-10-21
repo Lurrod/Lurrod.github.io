@@ -8,7 +8,14 @@ const valid = { nom: 'Ada Lovelace', email: 'ada@example.com', message: 'Bonjour
 test('accepts a well-formed message and returns trimmed values', () => {
   const r = validateContact({ nom: '  Ada  ', email: ' ADA@Example.com ', message: '  Bonjour, un projet à vous proposer.  ' });
   assert.equal(r.ok, true);
-  assert.deepEqual(r.value, { name: 'Ada', email: 'ADA@Example.com', message: 'Bonjour, un projet à vous proposer.' });
+  assert.deepEqual(r.value, { name: 'Ada', email: 'ADA@Example.com', message: 'Bonjour, un projet à vous proposer.', lang: 'fr' });
+});
+
+test('lang is "en" only when explicitly sent, "fr" otherwise', () => {
+  assert.equal(validateContact({ ...valid, lang: 'en' }).value.lang, 'en');
+  assert.equal(validateContact({ ...valid, lang: 'de' }).value.lang, 'fr');
+  assert.equal(validateContact({ ...valid, lang: ['en'] }).value.lang, 'fr');
+  assert.equal(validateContact(valid).value.lang, 'fr');
 });
 
 test('does not mutate its input', () => {

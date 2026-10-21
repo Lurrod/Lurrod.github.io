@@ -47,7 +47,15 @@ function validateContact(body) {
     Object.entries(checks).filter(([, c]) => c.error).map(([field, c]) => [field, c.error]),
   );
   if (Object.keys(errors).length) return { ok: false, errors };
-  return { ok: true, value: { name: checks.nom.value, email: checks.email.value, message: checks.message.value } };
+  return {
+    ok: true,
+    value: {
+      name: checks.nom.value,
+      email: checks.email.value,
+      message: checks.message.value,
+      lang: src.lang === 'en' ? 'en' : 'fr', // page the form was sent from
+    },
+  };
 }
 
 /** The form carries a hidden "website" field that only bots fill in. */

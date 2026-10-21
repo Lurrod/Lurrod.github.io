@@ -33,13 +33,16 @@ ErrorDocument 404 /404.html
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteRule ^en/?$ en/index.html [L]
 
-    # Pages /en/<page>
+    # Pages /en/<page> — seulement si en/<page>.html existe : sinon Apache
+    # réécrirait sans fin (truc.html.html...) et répondrait 500 au lieu de 404.
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteRule ^en/([^/]+)/?$ en/$1.html [L]
+    RewriteCond %{DOCUMENT_ROOT}/en/$1.html -f
+    RewriteRule ^en/([^/]+?)/?$ en/$1.html [L]
 
-    # Pages racine /<page>
+    # Pages racine /<page> — même garde : <page>.html doit exister
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteRule ^([^/]+)/?$ $1.html [L]
+    RewriteCond %{DOCUMENT_ROOT}/$1.html -f
+    RewriteRule ^([^/]+?)/?$ $1.html [L]
 </IfModule>

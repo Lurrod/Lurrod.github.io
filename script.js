@@ -4,10 +4,20 @@
   const lang = (document.documentElement.lang || 'fr').toLowerCase();
   const isEN = lang.startsWith('en');
   const T = isEN
-    ? { sending: 'Sending…', ok: "Message sent — thanks, I'll get back to you soon.", err: 'Something went wrong. Please retry or email me directly.',
-        invalid: 'Please check the highlighted fields.', rate: 'Too many messages in a short time. Please try again later.' }
-    : { sending: 'Envoi en cours…', ok: 'Message envoyé — merci, je vous réponds vite.', err: 'Une erreur est survenue. Réessayez ou écrivez-moi directement.',
-        invalid: 'Vérifiez les champs signalés.', rate: 'Trop de messages en peu de temps. Réessayez plus tard.' };
+    ? {
+        sending: 'Sending…',
+        ok: { title: 'Message sent', message: "Thanks! I'll get back to you very soon." },
+        invalid: { title: 'A few fields to check', message: 'Please review the highlighted fields.' },
+        rate: { title: 'Easy there', message: 'Several messages in a row. Please try again in a few minutes.' },
+        err: { title: "Couldn't send", message: 'Something went wrong. Retry, or write to contact@titouan-borde.com.' },
+      }
+    : {
+        sending: 'Envoi en cours…',
+        ok: { title: 'Message envoyé', message: 'Merci ! Je vous réponds très vite.' },
+        invalid: { title: 'Quelques champs à revoir', message: 'Vérifiez les champs signalés.' },
+        rate: { title: 'Doucement', message: "Plusieurs messages d'affilée. Réessayez dans quelques minutes." },
+        err: { title: 'Envoi impossible', message: 'Une erreur est survenue. Réessayez, ou écrivez à contact@titouan-borde.com.' },
+      };
 
   const reduceMo = matchMedia('(prefers-reduced-motion:reduce)').matches;
 
@@ -90,42 +100,44 @@
     foot.addEventListener('pointerleave', () => { target = rest; run(); });
   }
 
-  /* Contact form — posted to the site's own API (server/), delivered by mail */
+  /* Contact form — posted to the site's own API (server/), feedback as toasts */
   const form = document.getElementById('contactForm');
   if (form) {
-    const status = document.getElementById('formStatus');
     const btn = form.querySelector('.btn-submit');
     const label = btn.querySelector('.bt');
     const original = label.textContent;
     const fields = [...form.querySelectorAll('input[name], textarea[name]')];
-    const setStatus = (kind, text) => { status.className = 'form-status' + (kind ? ' ' + kind : ''); status.textContent = text; };
+    const notify = (type, { title, message }) => window.toast && window.toast({ type, title, message });
     const markInvalid = (names) => fields.forEach(f => f.toggleAttribute('aria-invalid', names.includes(f.name)));
-    const invalidFields = (body) => Object.keys((body && body.data && body.data.fields) || {});
-    const messageFor = (res, body) => {
-      if (res.status === 429) return T.rate;
-      if (res.status === 400 && invalidFields(body).length) return T.invalid;
-      return T.err;
-    };
+    const fieldErrors = (body) => (body && body.data && body.data.fields) || {};
+
+    // The API words field errors in French: show them as-is on the FR page.
+    const invalidMessage = (errors) => (isEN ? T.invalid.message : Object.values(errors).join(' ') || T.invalid.message);
 
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
       btn.disabled = true; label.textContent = T.sending;
-      setStatus('', ''); markInvalid([]);
+      markInvalid([]);
       try {
         const res = await fetch('/api/contact', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(Object.fromEntries(new FormData(form))),
+          body: JSON.stringify({ ...Object.fromEntries(new FormData(form)), lang: isEN ? 'en' : 'fr' }),
         });
         const body = await res.json().catch(() => null);
+        const errors = fieldErrors(body);
         if (res.ok && body && body.success) {
-          setStatus('ok', T.ok); form.reset();
+          notify('success', T.ok); form.reset();
+        } else if (res.status === 429) {
+          notify('info', T.rate);
+        } else if (res.status === 400 && Object.keys(errors).length) {
+          markInvalid(Object.keys(errors));
+          notify('error', { title: T.invalid.title, message: invalidMessage(errors) });
         } else {
-          markInvalid(invalidFields(body));
-          setStatus('err', messageFor(res, body));
+          notify('error', T.err);
         }
       } catch {
-        setStatus('err', T.err);
+        notify('error', T.err);
       } finally {
         label.textContent = original; btn.disabled = false;
       }

@@ -44,9 +44,12 @@
     .btn-fill:hover{transform:translateY(-3px);box-shadow:0 18px 50px rgba(199,183,255,.32)}
     .btn-ghost{border:1px solid var(--line);color:var(--ivory)}
     .btn-ghost:hover{transform:translateY(-3px);border-color:rgba(191,168,255,.5);box-shadow:0 0 40px rgba(141,124,255,.22)}
-    .lang{position:fixed;top:24px;right:28px;font-size:.74rem;letter-spacing:.18em;color:var(--dim);
-      padding:8px 15px;border:1px solid var(--line);border-radius:40px;transition:all .4s var(--ease)}
-    .lang:hover{color:var(--ivory);border-color:rgba(191,168,255,.5)}
+    .lang{position:fixed;top:24px;right:28px;display:inline-flex;width:36px;height:36px;padding:4px;
+      border:1px solid var(--line);border-radius:50%;transition:border-color .4s var(--ease),box-shadow .4s var(--ease)}
+    .lang img{width:100%;height:100%;border-radius:50%;object-fit:cover;opacity:.8;filter:saturate(.8);
+      transition:opacity .4s var(--ease),filter .4s var(--ease)}
+    .lang:hover,.lang:focus-visible{border-color:rgba(191,168,255,.5);box-shadow:0 0 24px rgba(141,124,255,.24)}
+    .lang:hover img,.lang:focus-visible img{opacity:1;filter:none}
     @media(prefers-reduced-motion:reduce){*{animation:none!important}}
   </style>
 </head>
@@ -55,7 +58,7 @@
   <div class="grain"></div>
   <div class="vignette"></div>
 
-  <a href="/en/" class="lang">EN</a>
+  <a href="/en/" class="lang" hreflang="en" lang="en" aria-label="English version" title="English"><img src="/images/anglais.png" alt="" width="26" height="26" /></a>
 
   <main>
     <div class="code">404</div>

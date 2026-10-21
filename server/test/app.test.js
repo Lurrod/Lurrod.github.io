@@ -36,7 +36,7 @@ test('a valid message is sent and acknowledged', async () => {
   const res = await post(build(), valid);
   assert.equal(res.status, 200);
   assert.deepEqual(res.body, { success: true, data: null, error: null });
-  assert.deepEqual(sent, [{ name: 'Ada Lovelace', email: 'ada@example.com', message: 'Bonjour, un projet à vous proposer.' }]);
+  assert.deepEqual(sent, [{ name: 'Ada Lovelace', email: 'ada@example.com', message: 'Bonjour, un projet à vous proposer.', lang: 'fr' }]);
 });
 
 test('an invalid message is rejected with the faulty fields', async () => {

@@ -93,3 +93,6 @@ jobs:
           check https://titouan-borde.com/.git/HEAD 404
           check https://titouan-borde.com/.env 404
           check https://titouan-borde.com/server/.env 404
+          # Une URL inconnue doit donner la page 404, pas une boucle de réécriture (500)
+          check https://titouan-borde.com/page-inexistante 404
+          check https://titouan-borde.com/en/page-inexistante 404

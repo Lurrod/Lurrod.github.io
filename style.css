@@ -285,9 +285,40 @@
     .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
     .form-field [aria-invalid]{border-color:rgba(255,157,157,.55)}
     .btn-submit{width:100%;justify-content:center;margin-top:6px;border:none}
-    .form-status{margin-top:16px;font-size:.86rem;text-align:center;min-height:20px;color:var(--dim);transition:color .4s}
-    .form-status.ok{color:var(--glow-blue)}
-    .form-status.err{color:#ff9d9d}
+
+    /* ═══════════ TOASTS ═══════════
+       Une carte sombre qui « s'allume » de l'intérieur : orbe lumineux qui
+       respire, halo diffus dans le coin, filet de lumière en bas qui sert de
+       minuteur (s'arrête au survol). --c = teinte du type. */
+    .toasts{position:fixed;right:24px;bottom:24px;z-index:300;display:flex;flex-direction:column;gap:12px;
+      width:min(380px,calc(100vw - 32px));pointer-events:none}
+    .toast{--c:199,183,255;position:relative;display:grid;grid-template-columns:auto 1fr auto;gap:14px;align-items:start;
+      padding:17px 12px 19px 20px;border-radius:22px;background:var(--elevated);overflow:hidden;pointer-events:auto;
+      border:1px solid rgba(var(--c),.16);
+      box-shadow:0 22px 60px rgba(0,0,0,.55),0 0 46px rgba(var(--c),.1);
+      opacity:0;transform:translateY(14px) scale(.98);filter:blur(6px);
+      transition:opacity .5s var(--ease),transform .5s var(--ease),filter .5s var(--ease)}
+    .toast.in{opacity:1;transform:none;filter:none}
+    .toast.out{opacity:0;transform:translateY(8px) scale(.98);filter:blur(4px);transition-duration:.3s}
+    .toast::before{content:"";position:absolute;width:170px;height:170px;left:-70px;top:-80px;border-radius:50%;
+      background:radial-gradient(circle,rgba(var(--c),.2),transparent 70%);pointer-events:none}
+    .toast.success{--c:184,234,255}
+    .toast.error{--c:255,178,196}
+    .toast.info{--c:199,183,255}
+    .toast-orb{position:relative;width:9px;height:9px;margin-top:6px;border-radius:50%;background:rgb(var(--c));
+      box-shadow:0 0 10px rgba(var(--c),.95),0 0 26px rgba(var(--c),.5);animation:breathe 3.2s var(--ease-soft) infinite}
+    .toast-body{position:relative;min-width:0}
+    .toast-title{font-size:.93rem;font-weight:500;letter-spacing:.01em;color:var(--ivory)}
+    .toast-msg{margin-top:3px;font-size:.85rem;line-height:1.55;color:var(--dim);overflow-wrap:anywhere}
+    .toast-x{position:relative;display:grid;place-items:center;width:30px;height:30px;margin-top:-4px;border:none;border-radius:50%;
+      background:none;color:var(--faint);transition:color .3s var(--ease),background .3s var(--ease)}
+    .toast-x:hover,.toast-x:focus-visible{color:var(--ivory);background:rgba(247,245,242,.06);outline:none}
+    .toast-bar{position:absolute;left:20px;right:20px;bottom:0;height:2px;border-radius:2px;transform-origin:left;
+      background:linear-gradient(90deg,rgba(var(--c),0),rgba(var(--c),.85) 30%,rgba(var(--c),.85) 70%,rgba(var(--c),0));
+      animation:toastTimer var(--d,5s) linear forwards}
+    .toast:hover .toast-bar,.toast:focus-within .toast-bar{animation-play-state:paused}
+    @keyframes toastTimer{from{transform:scaleX(1)}to{transform:scaleX(0)}}
+    @media(max-width:600px){.toasts{left:16px;right:16px;bottom:16px;width:auto}}
 
     /* ═══════════ FOOTER ═══════════ */
     footer{position:relative;isolation:isolate;overflow:hidden;border-top:1px solid var(--line-soft);

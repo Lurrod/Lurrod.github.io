@@ -1,26 +1,20 @@
 'use strict';
+const { renderHtml, renderText } = require('./template');
 
 /**
  * Builds the outgoing message. Sent from the site mailbox (the SMTP server
  * only relays its own address), with the visitor as Reply-To so answering
- * from the inbox goes straight back to them. Plain text only: nothing the
- * visitor typed is ever interpreted as HTML.
+ * from the inbox goes straight back to them. The HTML body escapes all
+ * visitor input (see template.js); a plain-text version is always attached.
  */
-function buildMail({ name, email, message }, { from, to }) {
+function buildMail(contact, { from, to, date = new Date() }) {
   return {
-    from: { name: `Portfolio — ${name}`, address: from },
+    from: { name: `Portfolio — ${contact.name}`, address: from },
     to,
-    replyTo: { name, address: email },
-    subject: `Nouveau message de ${name}`,
-    text: [
-      `Nom   : ${name}`,
-      `Email : ${email}`,
-      '',
-      message,
-      '',
-      '—',
-      'Envoyé depuis le formulaire de contact de titouan-borde.com',
-    ].join('\n'),
+    replyTo: { name: contact.name, address: contact.email },
+    subject: `Nouveau message de ${contact.name}`,
+    text: renderText(contact, date),
+    html: renderHtml(contact, date),
   };
 }
 
