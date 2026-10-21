@@ -37,7 +37,7 @@ Bienvenue sur mon portfolio ! Ce site web présente mes projets, compétences et
 Le site est servi par Apache depuis `/var/www/titouan-borde.com`, qui est un clone de ce dépôt. À chaque push sur `main`, GitHub Actions lance les tests de `server/`, puis se connecte en SSH au serveur : `git reset --hard origin/main`, `npm ci`, redémarrage PM2 du process `portfolio-api` (port 3400, exposé via `ProxyPass /api/`), et enfin des smoke tests.
 
 - Secrets GitHub : `SERVER_HOST`, `SERVER_USER`, `SSH_PRIVATE_KEY`.
-- Secrets de l'API : `/home/ubuntu/portfolio-api.env` sur le serveur (hors du dossier servi).
+- Secrets de l'API : `/home/ubuntu/portfolio-api/.env` sur le serveur (hors du dossier servi).
 - `lurrod.github.io` redirige vers `titouan-borde.com`.
 
 ## 🎨 Design

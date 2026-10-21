@@ -1,6 +1,8 @@
 # Le dépôt est déployé tel quel sur le serveur : seul le site statique est public.
 # L'API (server/) n'est joignable que via le ProxyPass /api/ du vhost.
-RedirectMatch 404 ^/(\.git[^/]*|server)(/|$)
+# Aucun fichier caché (.env, .git, .gitignore...) sauf ACME pour Let's Encrypt.
+RedirectMatch 404 "/\.(?!well-known/)"
+RedirectMatch 404 "^/server(/|$)"
 
 ErrorDocument 404 /404.html
 

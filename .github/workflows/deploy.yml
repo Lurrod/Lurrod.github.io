@@ -68,7 +68,7 @@ jobs:
             npm ci --omit=dev --no-audit --no-fund
             # Secrets hors du dossier servi par Apache (chmod 600).
             pm2 restart portfolio-api \
-              || pm2 start index.js --name portfolio-api --node-args="--env-file=/home/ubuntu/portfolio-api.env"
+              || pm2 start index.js --name portfolio-api --node-args="--env-file=/home/ubuntu/portfolio-api/.env"
             pm2 save
 
       # ─── Smoke tests post-déploiement ─────────────────────────
@@ -91,3 +91,4 @@ jobs:
           grep -q '"status":"ok"' /tmp/body
           check https://titouan-borde.com/server/package.json 404
           check https://titouan-borde.com/.git/HEAD 404
+          check https://titouan-borde.com/.env 404
